@@ -8,6 +8,8 @@ REM DESCRIPTION: Brave Breacher is a side-channel attack payload that utilizes v
 
 REM: This payload can also be found on the [hak5 usbrubberducky-payloads Github repository](https://github.com/hak5/usbrubberducky-payloads/tree/master/payloads/library/credentials/Brave_Breacher).
 
+-----
+
 **Exfiltrated password manager file:**
 ```
 name,url,username,password,note
