@@ -1,7 +1,7 @@
 <div align="center">
 
 ## 🦆🏴‍☠️ DuckyScript Payloads 🏴‍☠🦆
-A collection of DuckyScript payloads.
+A collection of DuckyScript payloads for hacking the planet.
 
 </div>
 
