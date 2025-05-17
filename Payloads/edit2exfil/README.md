@@ -10,6 +10,8 @@ REM REQUIREMENTS: Place Discord webhook in the #WEBHOOK_URL constant on line 10 
 
 REM: This payload can also be found on the [hak5 usbrubberducky-payloads Github repository](https://github.com/hak5/usbrubberducky-payloads/tree/master/payloads/library/exfiltration/edit2exfil).
 
+-----
+
 ## edit2exfil
 
 edit2exfil is a persistent file exfiltration payload that embeds itself as a `cronjob` on Linux systems via bash script, running silently in the background allowing for persistent exfiltration of updated files.
