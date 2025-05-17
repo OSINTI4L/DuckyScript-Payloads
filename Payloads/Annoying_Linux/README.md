@@ -4,7 +4,7 @@ REM AUTHOR: OSINTI4L
 
 REM TARGET OS: Linux (tested on Pop!_OS)
 
-REM DESCRIPTION: An annoying payload that utilizes ducky/bash scripts to randomly turn on and off: wifi, capslock, numlock, press arrow keys, and teleports the mouse pointer around the screen.
+REM DESCRIPTION: An annoying payload that utilizes ducky/bash scripts to randomly turn on and off: wifi, capslock, numlock, press arrow keys, and teleports the mouse pointer around the screen. Requires `xdotool` to be installed on target OS.
 
 The payload contains two parts:
 
