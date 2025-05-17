@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# A bash script that loops toggling the wifi connection on and off and teleports the mouse around the screen. Ctrl+c in terminal to stop script.
+# A bash script that loops toggling the wifi connection on and off and teleports the mouse around the screen. Ctrl+c in terminal to stop script. Requires xdotool to be installed on target OS.
 
 while true
 do
