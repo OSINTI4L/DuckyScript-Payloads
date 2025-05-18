@@ -12,7 +12,7 @@ Requires `xdotool` to be installed on target OS.
 
 The payload contains two parts:
 
-1. [Annoying_Linux.sh](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Annoying_Linux/Annoying_Linux.sh) Bash script.
+1. [Annoying_Linux.sh](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Annoying_Linux/Annoying_Linux.sh) - Bash script.
 2. [DuckyScript Payload](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Annoying_Linux/payload.txt).
 
-The DusckyScript payload will `wget` the `Annoying_Linux.sh` script hosted in the [Annoying_Linux](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Annoying_Linux) directory and execute it. The script is responsible for toggling WiFi and mouse point movement. The other functionality is performed by the DuckyScript itself (toggling of capslock, numlock, press arrow keys, etc).
+The DusckyScript payload will `wget` the `Annoying_Linux.sh` script hosted in the [Annoying_Linux](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Annoying_Linux) directory and execute it. The bash script is responsible for toggling WiFi and mouse pointer movement. The other functionality is performed by the DuckyScript itself (toggling of capslock, numlock, press arrow keys, etc).
