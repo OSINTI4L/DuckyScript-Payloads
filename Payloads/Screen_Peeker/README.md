@@ -10,4 +10,4 @@ The frequency of when the script is ran can be changed in line 19 via the (* * *
 
 The payload contains two parts:
 1. [.sp.sh](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Screen_Peeker/.sp.sh) - Bash script that will perform the screenshot and exfiltration.
-2. [DuckyScript Payload](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Screen_Peeker/payload.txt) - To inject .sp.sh onto the target system.
+2. [DuckyScript Payload](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Screen_Peeker/payload.txt) - Used to download and setup .sp.sh onto the target system.
