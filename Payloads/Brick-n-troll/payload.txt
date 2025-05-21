@@ -1,4 +1,4 @@
-EM TITLE: Brick-n-troll
+REM TITLE: Brick-n-troll
 
 REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
 
