@@ -3,7 +3,6 @@
 # https://github.com/OSINTI4L/DuckyScript-Payloads
 
 #!/bin/bash
-
 net_check() {
 	ping -c 1 hak5.org
 }
