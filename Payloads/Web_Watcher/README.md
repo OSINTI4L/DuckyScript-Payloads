@@ -9,6 +9,5 @@ REM DESCRIPTION: Web Watcher is a payload that will download a Bash script (.ww.
 For this payload to work, `fswebcam` must be installed on the target system (`sudo apt install fswebcam`).
 
 The payload contains two parts:
-
-1. [DuckyScript payload.txt](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Web_Watcher/payload.txt)
-2. [.ww.sh Bash script](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Web_Watcher/.ww.sh)
+  1. [.ww.sh](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Web_Watcher/.ww.sh) - Bash script that will perform the Webcam capturing and exfiltration.
+  2. [payload.txt](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Web_Watcher/payload.txt) - DuckyScript payload used to download and embed .ww.sh onto the target system.
