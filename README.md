@@ -1,7 +1,10 @@
 <div align="center">
 
 ## 🦆🏴‍☠️ DuckyScript Payloads 🏴‍☠🦆
+
 A collection of DuckyScript payloads for hacking the planet.
+
+🏆 [edit2exfil](https://payloadhub.com/blogs/payloads/edit2exfil) - Hak5 weekly payload award winner (May, 2025) 🏆
 
 </div>
 
