@@ -4,7 +4,7 @@ REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
 
 REM TARGET OS: Android (tested on Samsung S24 FE | Android 15 | One UI 7.0)
 
-Droidex is a data exfiltration payload that grabs the top file listed in the phones' downloads directory and exfiltrates it to a self-hosted webserver over LAN. Both the attacker machine and target device must be connected to the same LAN. The payload will use Google Search to navigate to the self-hosted webserver and upload the file. After exfiltration, the browser will navigate to `google.com` and the device will return to the home screen to obfuscate activity.
+Droidex exfiltrates the top file stored in the Downloads directory of target mobile device to a self-hosted python webserver over LAN. Both the attacker machine and target device must be connected to the same LAN. The payload will use Google Search to navigate to the self-hosted webserver and upload the file. After exfiltration, the browser will navigate to `google.com` and the device will return to the home screen to obfuscate activity.
 
 **REQUIRED DEPENDENCIES**
 
