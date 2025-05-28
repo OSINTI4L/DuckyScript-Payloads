@@ -1,0 +1,19 @@
+REM TITLE: Droidex
+
+REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
+
+REM TARGET OS: Android (tested on Samsung S24 FE | Android 15 | One UI 7.0)
+
+Droidex is a data exfiltration payload that grabs the top file listed in the phones' downloads directory and exfiltrates it to a self-hosted webserver over LAN. Both the attacker machine and target device must be connected to the same LAN. The payload will use Google Search to navigate to the self-hosted webserver and upload the file. After exfiltration, the browser will navigate to `google.com` and the device will return to the home screen to obfuscate activity.
+
+**REQUIRED DEPENDENCIES**
+
+Python module [uploadserver](https://pypi.org/project/uploadserver/)
+
+ 1. Install `uploadserver` on attack machine (`python3 -m pip install --user uploadserver`).
+ 2. Enter `ifconfig` in terminal of attack machine (Linux) to find machine IP address.
+ 3. Start the webserver (`python3 -m uploadserver`).
+ 4. Place the IP address found via `ifconfig` into line 6 (`DEFINE #IPA x.x.x.x:8000/upload`) of payload.txt.
+ 5. The file will be saved to the current working directory on the attacker machine where the server is being hosted from.
+
+![diagram](https://github.com/user-attachments/assets/7ff38363-1061-4ac4-a391-6d5cad8f9053)
