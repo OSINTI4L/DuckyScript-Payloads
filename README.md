@@ -10,6 +10,7 @@ A collection of DuckyScript payloads for hacking the planet.
 
 |Name|Targeted Operating System|Type|Description|
 |-----|-----|-----|-----|
+|[Droidex](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Droidex)|`Android`|Data Exfiltration|Droidex exfiltrates the top file stored in the downloads directory of target mobile device to a self-hosted python webserver over LAN.
 |[Brave_Breacher](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Brave_Breacher)|`Linux`|Credential Stealer|Exports a copy of all usernames and passwords stored in the Brave Browser password manager and exfiltrates them via Discord webhook.|
 |[Net_Enum](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Net_Enum)|`Linux`|Credential Stealer/Network Enumeration|Enumerates and steals credentials for: Networking interfaces, network manager connections, connected wireless network SSID and password, and IP logs public IP address.
 |[edit2exfil](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/edit2exfil)|`Linux`|Data Exfiltration|A file exfiltration payload that embeds itself as a cronjob running silently in the background allowing for persistent exfiltration of updated files.|
