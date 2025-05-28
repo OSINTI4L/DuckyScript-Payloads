@@ -1,7 +1,7 @@
 REM TITLE: Droidex
 REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
 REM TARGET OS: Android (tested on Samsung S24 FE | Android 15 | One UI 7.0)
-REM DESCRIPTION: Droidex is a data exfiltration payload that grabs the top file listed in the phones' downloads directory and exfiltrates it to a self-hosted webserver over LAN. To function you will need a webserver hosted locally on a personal machine and corresponding webserver IP address (see ReadMe). Place the server IP address on line 6 #IPA constant.
+REM DESCRIPTION: Droidex exfiltrates the top file stored in the Downloads directory of target mobile device to a self-hosted python webserver over LAN. To function you will need a webserver hosted locally on a personal machine and corresponding webserver IP address (see ReadMe). Place the server IP address on line 6 #IPA constant.
 
 DEFINE #IPA x.x.x.x:8000/upload
 
