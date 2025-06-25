@@ -56,8 +56,8 @@ An additional layer of obfuscation can be had by utilizing a URL shortening serv
 The payload workflow is as follows:
   - Chrome browser is opened.
   - A new tab is opened to ensure the proper browser environment is present for the script to run without issues.
-  - The browser is then navigated to the settings where the malicious BeEF C2 URL is placed.
+  - The browser is then navigated to the settings menu where the malicious BeEF C2 URL is placed.
   - All tabs are then closed.
-  - All applications are then closed and the phone returns to the home screen. This is necessary for obfuscation purposes and so the next time the browser is launched it automatically navigates to the malicious home page.
+  - All applications are then closed and the phone returns to the home screen. This is necessary for obfuscation purposes and to allow the browser to automatically navigate to the malicious homepage when next open.
 
 ![demo](https://github.com/user-attachments/assets/89d853d8-ec2c-4ca9-9cee-46ca4f33aab6)
