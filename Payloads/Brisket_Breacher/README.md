@@ -6,6 +6,10 @@
 
 </div>
 
+**Title:** Brisket_Breacher
+
+**Author:** OSINTI4L
+
 **Target Os:** Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V7.0 | Android V15).
 
 ## What is Brisket Breacher?
