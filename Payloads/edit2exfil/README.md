@@ -8,7 +8,7 @@ REM DESCRIPTION: (See below)
 
 REM REQUIREMENTS: Place Discord webhook in the #WEBHOOK_URL constant on line 10 | Timing of when and how frequent the script will be ran (10:00 AM, daily by default) via `cronjob` can be changed in line 53.
 
-REM: This payload can also be found on [Hak5 Payload Hub](https://payloadhub.com/blogs/payloads/edit2exfil) and received the weekly payload award (May 2025).
+REM This payload can also be found on [Hak5 Payload Hub](https://payloadhub.com/blogs/payloads/edit2exfil) and received the weekly payload award (May 2025).
 
 -----
 
