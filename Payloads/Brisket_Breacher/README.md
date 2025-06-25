@@ -49,7 +49,7 @@ The homepage was designed to imitate a typical Google Search landing page. Multi
 ## payload.txt
 The [payload.txt](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Brisket_Breacher/payload.txt) file is the delivery system for configuration of the Google Chrome browser.
 
-**The URL pointing to the BeEF C2 must be defined in line 7 of the payload.txt.** The URL to the BeEF C2 is the following: `http://x.x.x.x:3000/demos/homepage.html` (replacing the IP parameter with the IP address of the attacker machine). E.g., `http://192.168.8.100:3000/demos/parameter.html`. This will point to the homepage.html file that has been previously configured during the BeEF C2 setup stage.
+**The URL pointing to the BeEF C2 must be defined in line 7 of the payload.txt.** The URL to the BeEF C2 is the following: `http://x.x.x.x:3000/demos/homepage.html` (replacing the IP parameter with the IP address of the attacker machine). E.g., `http://192.168.8.100:3000/demos/homepage.html`. This will point to the homepage.html file that has been previously configured during the BeEF C2 setup stage.
 
 An additional layer of obfuscation can be had by utilizing a URL shortening service (e.g., [Tinyurl](https://tinyurl.com/)). After placing the `http://x.x.x.x:3000/demos/homepage.html` URL into the shortener, you will then use the shortened URL as the constant defined in line 7.
 
