@@ -41,8 +41,8 @@ Due to the payload changing the homepage in the settings of the Google Chrome br
 The homepage was designed to imitate a typical Google Search landing page. Multiple features were added in an attempt to help obfuscate the fact that it is a *malicious* homepage. The homepage also delivers the BeEF C2 hook.
   - Features:
     - BeEF C2 hook delivery.
-    - Dark and Light mode variations that will render accordingly depending on device settings.
-    - A useable search bar and buttons that will forward the user input as a Google search requests.
+    - Dark and Light mode variations that will render according to device settings.
+    - A useable search bar and buttons that will forward the user input as a Google search request.
 
 ![googlesearch](https://github.com/user-attachments/assets/1a428553-52d5-417b-aabb-5fc053c33ea8)
 
