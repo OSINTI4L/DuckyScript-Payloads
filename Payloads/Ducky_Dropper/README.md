@@ -28,7 +28,7 @@ Ducky Dropper is designed so that once injected on the victim machine via the Du
 
 ---
 
-**Testing Environment**
+### Testing Environment
 
 For this PoC I have set the DuckyScript payload to grab two Bash sripts (`cron_dropper.sh` and `payload.sh`) from Github. These are for demonstration purposes only to show how the payload works. The `payload.sh` is a Bash payload that when executed, checks for internet connectivity, looks for files inside of the users home directory that have been modified in the last 24 hours, if found tarballs them and exfiltrates them to a Discord webhook. If you would like to test this payload, you will need to manually add your Discord webhook to line 37 of the `payload.sh` after the DuckyScript payload has finished its injection. This can be accomplished with the following command: `sed -i '37c\https://discord.com/api/webhooks/your/webhook/here' ~/.confg/*`. This would normally be pre-configuerd in the payload prior to being hosted and grabbed so that when the payload is dropped it is fully configured; but it's not cause PoC.
 
