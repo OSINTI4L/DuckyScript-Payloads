@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# See README.md
-# This is a DEMONSTRATION payload that identifies files modified in the last 24 hours, tarballs them, exfiltrates them to a Discord webhook, and then deletes the tarball to obfuscate.
+# --> See README.md for full information <--
+# This is a DEMONSTRATION payload that is part of the Ducky_Dropper payload ("system"?) that identifies files modified in the last 24 hours, tarballs them, exfiltrates them to a Discord webhook, and then deletes the tarball to obfuscate.
 # You must insert your Discord webhook in line 37.
 
 # Creating file_check function to see if the listed filetypes (and their respective documents) have been modified (edited) in the past 24 hours:
