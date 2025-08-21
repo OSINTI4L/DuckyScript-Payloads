@@ -92,6 +92,7 @@ As this is a demo payload, you will need to manually configure the Discord webho
 ---
 
 **A note on configuration of payload.sh and cron_dropper.sh**
+
 It is important to note that whatever choice of naming convention used to name the payloads and dropper, they should be used consistently (so pick something you like). This will prevent errors with the checksum process. As an example, if the intiially downloaded payload is `payload123.sh`, then all subsequent payloads grabbed by the dropper should also be named `payload123.sh`.
 
 Also, if you would like to change the name of the dropper, the change must also be done in the DS_payload.txt `"@reboot sleep 60 && ~/.cronfg/cron_dropper.sh"` (line 26) to ensure the cronjob calls to the correct dropper.
