@@ -71,7 +71,7 @@ Again, please remember that these provided payloads are PoC only, and to not use
 4. Performs a checksum function to identify a change in payload.
 5. Places new payload into the `~/.confg` directory to be executed by the trigger command.
 
-**Configuration**
+**Configuration:**
 - The frequency of the dropper "phoning home" for payloads can be altered in the DS_payload.txt. By default, it is sent to grab payloads 60 seconds after machine boot. If you would like to change this, it will need to be configured prior to initial DuckyScript payload injection. This can be altered on line 26 of the `DS_payload.txt` file.
 	- e.g., `"@reboot sleep 60 && ~/.cronfg/cron_dropper.sh"` - change the `@reboot sleep 60` to the desired configuration.
 	
