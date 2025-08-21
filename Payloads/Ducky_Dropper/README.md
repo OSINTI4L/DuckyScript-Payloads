@@ -35,6 +35,8 @@ For this PoC I have set the DuckyScript payload to grab two Bash sripts (`cron_d
 After the Discord webhook has been configured, running the `pwd` command will silently exfiltrate modified files:
 <img width="760" height="151" alt="t2" src="https://github.com/user-attachments/assets/2968a7b0-e95b-46a8-ba61-dc52b4296017" />
 
+If you would like to test the dropper after having tested payload execution (aka manually adding your webhook and running `pwd`), reboot the system, after 60 seconds perform the following command: `cat ~/.confg/*`. You will see that the `payload.sh` has been replaced/updated by the dropper and that your webhook is no longer present.
+
 Again, please remember that these provided payloads are PoC only, and to not use them in their "demo" configuration to attack or persist on target machines.
 
 ---
