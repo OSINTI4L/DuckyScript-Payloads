@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# See README.md
+# --> See README.md for full information <--
 # This is a DEMONSTRATION dropper that is part of the Ducky_Dropper payload ("system"?) that will be embedded as a cronjob to pull payloads from Github (or other sources), to be executed on the target machine.
 
 # Creating $user variable and hashing function for payloads and internet connectivity check:
