@@ -4,11 +4,11 @@
 
 A collection of DuckyScript payloads for hacking the planet.
 
-🏆 [Brisket_Breacher](https://payloadhub.com/blogs/payloads/brisket_breacher) 🏆 - Hak5 payload award winner (July, 2025)
-
-🏆 [Droidex](https://payloadhub.com/blogs/payloads/droidex) 🏆 - Hak5 payload award winner (May, 2025)
-
-🏆 [edit2exfil](https://payloadhub.com/blogs/payloads/edit2exfil) 🏆 - Hak5 payload award winner (May, 2025)
+|🏆 Hak5 DuckyScript Payload Awards 🏆| 🖳 OS 📱 |
+|---|---|
+|[Brisket_Breacher](https://payloadhub.com/blogs/payloads/brisket_breacher) |`Android`|
+|[Droidex](https://payloadhub.com/blogs/payloads/droidex)  |`Android`|
+|[edit2exfil](https://payloadhub.com/blogs/payloads/edit2exfil) |`Linux`|
 
 </div>
 
