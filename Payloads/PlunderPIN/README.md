@@ -34,7 +34,7 @@ An attacker will host a malicious Google homepage (homepage.html) clone on an Ap
 ### payload.txt
 The payload.txt file is the delivery system for configuration of the Google Chrome browser and can be injected with a Hak5 USB RubberDucky or O.mg device.
 
-**The URL pointing to the Apache webserver must be defined in line 7 of the payload.txt.** The URL to the webserver is the following: `http://x.x.x.x:/homepage.html` (replacing the IP parameter with the IP address of the attacker machine, explained below). E.g., `http://192.168.8.100/homepage.html`.
+**The URL pointing to the Apache webserver must be defined in line 7 of the payload.txt.** The URL to the webserver is the following: `http://x.x.x.x:/homepage.html`. Replace the IP parameter with the IP address of the attacker machine (explained in setting up Apache webserver section below). E.g., `http://192.168.8.100/homepage.html`.
 
 An additional layer of obfuscation can be had by utilizing a URL shortening service (e.g., [Tinyurl](https://tinyurl.com/)). After placing the `http://x.x.x.x/homepage.html` URL into the shortener, you will then use the shortened URL as the constant defined in line 7.
 
@@ -58,7 +58,7 @@ This can be read at anytime via: `cat /var/log/apache2/access.log`
 -----
 
 ### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
-1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be used as the URL to inject to the target mobile device (see payload.txt section.
+1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be used as the URL to inject to the target mobile device (see payload.txt section above).
      
 2. Download the homepage.html file from the PlunderPIN repository directory. This will be the homepage that our malicious URL will point to.
 
