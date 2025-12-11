@@ -18,10 +18,7 @@ PlunderPIN is DuckyScript phishing payload designed to trick a user into enterin
 
 An attacker will host a malicious Google homepage (homepage.html) clone on an Apache webserver. The malicious homepage will be injected by the USB RubberDucky or O.mg cable to the target mobile device. Once injected, it will configure the homepage in the Google Chrome browser user settings so that the homepage is now "swapped" with the malicious home page. When a user now opens the Google Chrome browser they will be displayed with the malicious homepage and be prompted for a phishing mechanism (fake "update") for the mobile device lockscreen PIN. The PIN will then be stored in the `access.log` file of the Apache webserver hosting the malicious homepage.
 
-<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
-
-
-**The homepage.html**
+#### The homepage.html
   - Features:
     - Dark and Light mode variations that will render according to device settings.
     - A useable search bar and buttons that will forward the user input as a Google search request so that the homepage appears authentic.
@@ -32,22 +29,13 @@ An attacker will host a malicious Google homepage (homepage.html) clone on an Ap
 ![DM](https://github.com/user-attachments/assets/3a776008-0b27-475b-b9ca-809eaa5928b2)
 ![LM](https://github.com/user-attachments/assets/dfbc4161-f62e-45b8-922b-9d4ab73282f2)
 
+#### Viewing logs/target PIN
 
+The target's PIN will be logged in the Apache webserver `/var/log/apache2/access.log` file. This can be read at anytime via: `cat /var/log/apache2/access.log`
 
+<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
 
-
-### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
-1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be needed in multiple places momentarily.
-     
-2. Download the homepage.html file from the PlunderPIN repository (described next). This will be the homepage that our malicious URL will point to.
-
-3. Move the homepage.html file (downloaded to your current working directory to the Apache webserver:
-    - `sudo mv homepage.html /var/www/html`
-
-4. Start the Apache webserver:
-    - `sudo systemctl start apache2`
-
-### payload.txt
+#### payload.txt
 The payload.txt file is the delivery system for configuration of the Google Chrome browser.
 
 **The URL pointing to the Apache webserver must be defined in line 7 of the payload.txt.** The URL to the webserver is the following: `http://x.x.x.x:/homepage.html` (replacing the IP parameter with the IP address of the attacker machine). E.g., `http://192.168.8.100/homepage.html`. This will point to the homepage.html file that has been previously configured during the webserver setup stage.
@@ -60,3 +48,14 @@ The payload workflow is as follows:
   - The browser is then navigated to the settings menu where the malicious Apache webserver URL is placed.
   - All tabs are then closed.
   - All applications are then closed and the phone returns to the home screen. This is necessary for obfuscation purposes and to allow the browser to automatically navigate to the malicious homepage when opened.
+
+#### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
+1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be needed in multiple places momentarily.
+     
+2. Download the homepage.html file from the PlunderPIN repository (described next). This will be the homepage that our malicious URL will point to.
+
+3. Move the homepage.html file (downloaded to your current working directory to the Apache webserver:
+    - `sudo mv homepage.html /var/www/html`
+
+4. Start the Apache webserver:
+    - `sudo systemctl start apache2`
