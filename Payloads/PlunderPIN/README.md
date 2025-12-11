@@ -12,7 +12,7 @@
 
 ## What is PlunderPIN?
 
-PlunderPIN is DuckyScript phishing payload designed to trick a user into entering their mobile lockscreen PIN which is then logged in the `access.log` file of an Apache webserver. This is done so that an attacker can use the phished PIN for futher attacks against the mobile device, as they can now defeat the lockscreen and have total access as well as utilize the PIN for other authentication required applications and services. For testing pruposes the webserver will be hosted over LAN (both the attacker machine and target device must be on the same LAN), but can easily be hosted over the internet.
+PlunderPIN is a DuckyScript phishing payload designed to trick a user into entering their mobile lockscreen PIN which is then logged in the `access.log` file of an Apache webserver. This is done so that an attacker can use the phished PIN for futher attacks against the mobile device, as they can now defeat the lockscreen and have total access as well as utilize the PIN for other authentication required applications and services. For testing pruposes the webserver will be hosted over LAN (both the attacker machine and target device must be on the same LAN), but can easily be hosted over the internet.
 
 ### How it works
 
