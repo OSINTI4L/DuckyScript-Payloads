@@ -31,14 +31,6 @@ An attacker will host a malicious Google homepage (homepage.html) clone on an Ap
 
 -----
 
-### Viewing logs/target PIN
-
-The target's PIN will be logged in the Apache webserver `/var/log/apache2/access.log` file. This can be read at anytime via: `cat /var/log/apache2/access.log`
-
-<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
-
------
-
 ### payload.txt
 The payload.txt file is the delivery system for configuration of the Google Chrome browser and can be injected with a Hak5 USB RubberDucky or O.mg device.
 
@@ -52,6 +44,16 @@ The payload workflow is as follows:
   - The browser is then navigated to the settings menu where the malicious Apache webserver URL is placed.
   - All tabs are then closed.
   - All applications are then closed and the phone returns to the home screen. This is necessary for obfuscation purposes and to allow the browser to automatically navigate to the malicious homepage when opened.
+
+-----
+
+### Viewing logs/target PIN
+
+The target's PIN will be logged in the Apache webserver `/var/log/apache2/access.log` file.
+
+This can be read at anytime via: `cat /var/log/apache2/access.log`
+
+<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
 
 -----
 
