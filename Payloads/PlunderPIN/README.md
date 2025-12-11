@@ -8,7 +8,7 @@
 
 **Author:** OSINTI4L
 
-**Target Os:** Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V8.0 | Android 16 | Google Chrome Browser 143.0.7499.53).
+**Target Os:** Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V8.0 | Android 16 | Google Chrome browser 143.0.7499.53).
 
 ## What is PlunderPIN?
 
@@ -16,18 +16,23 @@ PlunderPIN is DuckyScript phishing payload designed to trick a user into enterin
 
 ### How it works
 
-An attacker will host a malicious "Google homepage" clone on an Apache webserver. The malicious homepage (homepage.html) will be injected by the USB RubberDucky or O.mg cable to the target mobile device. Once injected, it will configure the homepage in the Google Chrome Browser user settings so that the homepage is now "swapped"
+An attacker will host a malicious Google homepage (homepage.html) clone on an Apache webserver. The malicious homepage will be injected by the USB RubberDucky or O.mg cable to the target mobile device. Once injected, it will configure the homepage in the Google Chrome browser user settings so that the homepage is now "swapped" with the malicious home page. When a user now opens the Google Chrome browser they will be displayed with the malicious homepage and be prompted for a phishing mechanism (fake "update") for the mobile device lockscreen PIN. The PIN will then be stored in the `access.log` file of the Apache webserver hosting the malicious homepage.
+
+<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
+
 
 **The homepage.html**
   - Features:
     - Dark and Light mode variations that will render according to device settings.
-    - A useable search bar and buttons that will forward the user input as a Google search request.
+    - A useable search bar and buttons that will forward the user input as a Google search request so that the homepage appears authentic.
+    - Persistently stored in browser settings (survives browser closing, device reboot, etc).
     - Cookie mechanism to ensure that PIN is entered.
+
 ![DM](https://github.com/user-attachments/assets/3a776008-0b27-475b-b9ca-809eaa5928b2)
 ![LM](https://github.com/user-attachments/assets/dfbc4161-f62e-45b8-922b-9d4ab73282f2)
 
 
-<img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
+
 
 
 ### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
