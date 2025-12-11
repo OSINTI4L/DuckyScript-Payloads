@@ -8,7 +8,7 @@
 
 **Author:** [OSINTI4L](https://github.com/OSINTI4L)
 
-**Target Os:** Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V8.0 | Android 16 | Google Chrome browser 143.0.7499.53).
+**Target Os:** Android mobile device/Google Chrome (tested on Samsung S24 FE | One UI V8.0 | Android 16 | Google Chrome browser 143.0.7499.53)
 
 ## What is PlunderPIN?
 
