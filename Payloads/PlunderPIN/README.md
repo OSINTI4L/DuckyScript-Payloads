@@ -58,7 +58,7 @@ This can be read at anytime via: `cat /var/log/apache2/access.log`
 -----
 
 ### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
-1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be needed in multiple places momentarily.
+1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be used as the URL to inject to the target mobile device (see payload.txt section.
      
 2. Download the homepage.html file from the PlunderPIN repository directory. This will be the homepage that our malicious URL will point to.
 
