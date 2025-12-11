@@ -29,11 +29,15 @@ An attacker will host a malicious Google homepage (homepage.html) clone on an Ap
 ![DM](https://github.com/user-attachments/assets/3a776008-0b27-475b-b9ca-809eaa5928b2)
 ![LM](https://github.com/user-attachments/assets/dfbc4161-f62e-45b8-922b-9d4ab73282f2)
 
+-----
+
 ### Viewing logs/target PIN
 
 The target's PIN will be logged in the Apache webserver `/var/log/apache2/access.log` file. This can be read at anytime via: `cat /var/log/apache2/access.log`
 
 <img width="889" height="254" alt="alog" src="https://github.com/user-attachments/assets/fc90870a-b106-4324-80e3-0463b69603e3" />
+
+-----
 
 ### payload.txt
 The payload.txt file is the delivery system for configuration of the Google Chrome browser and can be injected with a Hak5 USB RubberDucky or O.mg device.
@@ -49,6 +53,8 @@ The payload workflow is as follows:
   - All tabs are then closed.
   - All applications are then closed and the phone returns to the home screen. This is necessary for obfuscation purposes and to allow the browser to automatically navigate to the malicious homepage when opened.
 
+-----
+
 ### Setting up the Apache webserver using a [Kali Linux](https://www.kali.org) box
 1. Once you have spun-up an instance of Kali (our attacker machine), you must first find the IP address of the machine. This can be found via `ifconfig`, store the IP address as it will be needed in multiple places momentarily.
      
@@ -59,6 +65,8 @@ The payload workflow is as follows:
 
 4. Start the Apache webserver:
     - `sudo systemctl start apache2`
+
+-----
 
 ### Cleanup
 Two artifacts are left by the payload:
