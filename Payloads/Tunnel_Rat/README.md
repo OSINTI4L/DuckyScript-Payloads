@@ -23,6 +23,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
       - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it to get on the network.
       - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
 This means once planted the attacker never requires physical access to the pager again to interact with it.
+
 8. Once the attacker has entered the target network password the management portal is shutdown to obfuscate its presence.
 9. The pager then attempts to get on the target network.
 10. Once connected to the target network the pager sends a `ping` to `discord.com` to check for internet availability.
@@ -31,4 +32,4 @@ This means once planted the attacker never requires physical access to the pager
 13. If online, the pager attempts to establish a reverse SSH tunnel to the VPS C2 server.
 14. If successful, the pager notifies the attacker via aforementioned `Discord Webhook` that the tunnel is online.
 
-The attacker now has full remote access to the pager via a reverse shell SSH tunnel, allowing further exploitation of the target network.
+**The attacker now has full remote access to the pager via a reverse shell SSH tunnel, allowing further exploitation of the target network.**
