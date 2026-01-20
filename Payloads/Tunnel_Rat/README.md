@@ -22,6 +22,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 7. When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly). This is done for two reasons.
       - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it to get on the network.
       - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
+
 This means once planted the attacker never requires physical access to the pager again to interact with it.
 
 8. Once the attacker has entered the target network password the management portal is shutdown to obfuscate its presence.
