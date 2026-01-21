@@ -6,7 +6,7 @@ A collection of DuckyScript payloads for hacking the planet.
 
 (now includes WiFi Pineapple Pager payloads)
 
-|🏆 Hak5 DuckyScript Payload Awards 🏆| 🖳 OS 📱 | Device |
+|🏆 Hak5 Payload Awards 🏆| 🖳 OS 📱 | Device |
 |---|---|---|
 |[Brisket_Breacher](https://payloadhub.com/blogs/payloads/brisket_breacher) |`Android`|USB Rubber Ducky/O.MG|
 |[Droidex](https://payloadhub.com/blogs/payloads/droidex)  |`Android`|USB Rubber Ducky/O.MG|
