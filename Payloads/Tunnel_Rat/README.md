@@ -93,7 +93,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 ### Discord webhook
   - A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is required to send payload status updates to the attacker.
-      - Define the Discord webhook to the `payload.sh` file:
+      - Define the Discord webhook in the `payload.sh` file:
              `Line 10: DISCORD_WEBHOOK="https://discord.com/api/webhooks/Enter/Discord/Webhook/Here"` 
 
 ### `sshpass`
