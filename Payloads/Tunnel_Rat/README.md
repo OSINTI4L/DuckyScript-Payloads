@@ -67,3 +67,5 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 **3. `sshpass`**
   - Due to streamlining the `SSH` connection (as it's ran in the background on the pager) a password is used for `SSH` authentication to the VPS C2. `sshpass` must be installed on the pager via:
       `opkg update && opkg install -d mmc sshpass`
+
+## Configuration
