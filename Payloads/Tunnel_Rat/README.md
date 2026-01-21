@@ -25,8 +25,10 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 **5.** Once a handshake has been captured the radio channel lock is lifted returning the radio to its default scanning environment.
 
 **6.** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly). This is done for two reasons:
-      - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
-      - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
+
+  - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
+      
+  - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
 
 <img width="400" height="282" alt="pager" src="https://github.com/user-attachments/assets/acdf5ed8-40e4-43f6-9169-9c78b5f07bf3" />
   
@@ -55,8 +57,9 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 <img width="450" height="465" alt="kali" src="https://github.com/user-attachments/assets/00a2e1da-fb47-471e-b4e3-04e447bb9a93" />
 
 ## Dependencies
-#### 1. Virtual Private Server (VPS) Command and Control (C2)
-A VPS is required to be used as the attacker C2. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as an exmaple of an attacker platform.
+**1. Virtual Private Server (VPS) Command and Control (C2)**
+  
+  - A VPS is required to be used as the attacker C2. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as an exmaple of an attacker platform.
 
-#### 2. Discord webhook
-A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is used to send notifications of payload status updates to the attacker.
+**2. Discord webhook**
+  - A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is required to send payload status updates to the attacker.
