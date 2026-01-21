@@ -28,7 +28,7 @@ Built on Pineapple Pager firmware `v1.0.6`
 
 <a id="what-is-tunnel-jump"></a>
 ## 🐁 What is Tunnel Rat?
-Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via `SSH` reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
+Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via `SSH` reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. This allows the attacker to access a root level reverse shell on the pager. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
 
 <a id="payload-jump"></a>
 ## 🔄 Payload Workflow
@@ -70,9 +70,9 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
   
 <img width="772" height="50" alt="hook2" src="https://github.com/user-attachments/assets/fefd4c95-fccf-45d4-be3c-0011599dd34a" />
 
-**14)** A pager reverse shell is then avilable inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
+**14)** A pager reverse shell is then available inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
   
-**The attacker now has full remote access to the pager via a reverse shell `SSH` tunnel, allowing further exploitation of the target network.**
+**The attacker now has full remote access to the pager allowing further exploitation of the target network.**
 
 <img width="450" height="465" alt="kali" src="https://github.com/user-attachments/assets/00a2e1da-fb47-471e-b4e3-04e447bb9a93" />
 
