@@ -101,6 +101,14 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
       `opkg update && opkg install -d mmc sshpass`
 
 ### Management AP
-  - The management access point is used as a method to grab PCAP files and then pass the clear text (cracked) network password back to the pager. The name and password of the management ap must be defined in the `payload.sh` file:
+  - The management access point is used as a method to grab PCAP files and then pass the clear text (cracked) network password back to the pager. The SSID and password of the management ap must be defined in the `payload.sh` file:
+    - Define the SSID:
       `Line 8: MAPSSID="Name-Management-Portal-SSID-Here"`
+    - Define the password:
       `Line 9: MAPPASS="Enter-Management-Portal-Password-Here"`
+
+<div align="center">
+  
+# 🪤  🐁
+
+</div>
