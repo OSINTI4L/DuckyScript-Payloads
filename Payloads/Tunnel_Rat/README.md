@@ -22,7 +22,7 @@
 
 Built on Pineapple Pager firmware `v1.0.6`
 
-### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies](#dependencies) | [Configuration](#configuration)
+### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies](#dependencies-jump) | [Configuration](#configuration-jump)
 
 </div>
 
@@ -74,6 +74,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 <img width="450" height="465" alt="kali" src="https://github.com/user-attachments/assets/00a2e1da-fb47-471e-b4e3-04e447bb9a93" />
 
+<a id="dependencies-jump"></a>
 ## 🛠️ Dependencies
 **1. Virtual Private Server (VPS) Command and Control (C2)**
   
@@ -86,4 +87,5 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
   - Due to streamlining the `SSH` connection (as it's ran in the background on the pager) a password is used for `SSH` authentication to the VPS C2. `sshpass` must be installed on the pager via:
       `opkg update && opkg install -d mmc sshpass`
 
+<a id="configuration-jump"></a>
 ## ⚙️ Configuration
