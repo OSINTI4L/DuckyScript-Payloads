@@ -85,7 +85,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
              `AllowTcpForwarding yes`
              `PasswordAuthentication yes`
              `GatewayPorts no`
-      - Restart the service: `systemctl restart ssh`
+      - Restart the service after making changes: `systemctl restart ssh`
       - Define the VPS C2 IP address to the `payload.sh` file:
              `Line 11: VPSIP="X.X.X.X-Enter-VPS-C2-IP-Here"`
       - Define the VPS C2 `SSH` password to the `payload.sh` file:
