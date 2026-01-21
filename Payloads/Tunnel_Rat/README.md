@@ -8,9 +8,9 @@
 
 Built on Pineapple Pager firmware `v1.0.6`
 
-</div>
+### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies](#dependencies)
 
-[What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies](#dependencies)
+</div>
 
 <a id="what-is-tunnel-jump"></a>
 ## 🐁 What is Tunnel Rat?
