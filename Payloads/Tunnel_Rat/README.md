@@ -22,7 +22,7 @@
 
 Built on Pineapple Pager firmware `v1.0.6`
 
-### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies and Configuration](#dependencies-jump)
+## [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies and Configuration](#dependencies-jump)
 
 </div>
 
