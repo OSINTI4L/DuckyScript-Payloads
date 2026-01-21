@@ -30,7 +30,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 <img width="400" height="282" alt="pager" src="https://github.com/user-attachments/assets/acdf5ed8-40e4-43f6-9169-9c78b5f07bf3" />
   
-**This means once the pager is implanted the attacker never requires physical access to the pager again to interact with it.**
+**This means once the pager is implanted the attacker never requires physical access to the pager to interact with it.**
 
 **7.** Once the attacker has entered the target network password the management portal is shutdown to obfuscate its presence.
 
