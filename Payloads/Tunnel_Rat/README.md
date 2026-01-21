@@ -22,7 +22,7 @@
 
 Built on Pineapple Pager firmware `v1.0.6`
 
-## [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies and Configuration](#dependencies-jump)
+### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies and Configuration](#dependencies-jump)
 
 </div>
 
@@ -79,6 +79,15 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 ### Virtual Private Server (VPS) Command and Control (C2)
   
   - A VPS is required to host as the attacker C2 platform. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as the C2 platform.
+      - To ensure the tunneling is properly configured the following changes must be made in the `/etc/ssh/sshd_config` file of the VPS C2:
+             `AllowTcpForwarding yes`
+             `PasswordAuthentication yes`
+             `GatewayPorts no`
+      - Restart the service: `systemctl restart ssh`
+      - Add the VPS C2 IP address to the `payload.sh` script:
+             `Line 11: VPSIP="X.X.X.X-Enter-VPS-C2-IP-Here"`
+      - Add the VPS C2 `SSH` password to the `payload.sh` script:
+             `Line 12: SSHPW="Enter-VPS-C2-SSH-Password-Here"`
 
 ### Discord webhook
   - A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is required to send payload status updates to the attacker.
