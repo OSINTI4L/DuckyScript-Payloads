@@ -11,7 +11,7 @@ Built on Pineapple Pager firmware `v1.0.6`
 </div>
 
 ## 🐁 What is Tunnel Rat?
-Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via ``SSH`` reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
+Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via `SSH` reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
 
 ## 🔄 Payload Workflow
 **1.** User is prompted for the target `wpa2-psk` network SSID.
