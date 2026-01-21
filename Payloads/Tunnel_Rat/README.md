@@ -46,7 +46,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
   - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
       
-  - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
+  - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to enter the cracked password to be used to get on the target network.
 
 <img width="400" height="282" alt="pager" src="https://github.com/user-attachments/assets/acdf5ed8-40e4-43f6-9169-9c78b5f07bf3" />
   
