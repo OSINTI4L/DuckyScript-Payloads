@@ -59,7 +59,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 ## Dependencies
 **1. Virtual Private Server (VPS) Command and Control (C2)**
   
-  - A VPS is required to be used as the attacker C2. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as an exmaple of an attacker platform.
+  - A VPS is required to be used as the attacker C2 platform. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as a C2 platform.
 
 **2. Discord webhook**
   - A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is required to send payload status updates to the attacker.
