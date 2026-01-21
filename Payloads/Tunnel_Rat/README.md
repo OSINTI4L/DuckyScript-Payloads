@@ -86,19 +86,21 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
              `PasswordAuthentication yes`
              `GatewayPorts no`
       - Restart the service: `systemctl restart ssh`
-      - Add the VPS C2 IP address to the `payload.sh` script:
+      - Define the VPS C2 IP address to the `payload.sh` file:
              `Line 11: VPSIP="X.X.X.X-Enter-VPS-C2-IP-Here"`
-      - Add the VPS C2 `SSH` password to the `payload.sh` script:
+      - Define the VPS C2 `SSH` password to the `payload.sh` file:
              `Line 12: SSHPW="Enter-VPS-C2-SSH-Password-Here"`
 
 ### Discord webhook
   - A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is required to send payload status updates to the attacker.
-      - Add the Discord webhook to the `payload.sh` script:
+      - Define the Discord webhook to the `payload.sh` file:
              `Line 10: DISCORD_WEBHOOK="https://discord.com/api/webhooks/Enter/Discord/Webhook/Here"` 
 
 ### `sshpass`
   - Due to streamlining the `SSH` connection (as it's ran in the background on the pager) a password is used for `SSH` authentication to the VPS C2. `sshpass` must be installed on the pager via:
       `opkg update && opkg install -d mmc sshpass`
 
-<a id="configuration-jump"></a>
-## ⚙️ Configuration
+### Management AP
+  - The management access point is used as a method to grab PCAP files and then pass the clear text (cracked) network password back to the pager. The name and password of the management ap must be defined in the `payload.sh` file:
+      `Line 8: MAPSSID="Name-Management-Portal-SSID-Here"`
+      `Line 9: MAPPASS="Enter-Management-Portal-Password-Here"`
