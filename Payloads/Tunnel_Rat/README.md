@@ -28,25 +28,25 @@ Built on Pineapple Pager firmware `v1.0.6`
 
 <a id="what-is-tunnel-jump"></a>
 ## 🐁 What is Tunnel Rat?
-Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via `SSH` reverse tunneling from the pager to a virtual private server (VPS) being used as a Command and Control (C2) server. This gives the attacker a root level reverse shell on the pager. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack and then pass the clear text password back to the pager, allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
+Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via `SSH` reverse tunneling from the pager to a virtual private server (VPS) being used as a Command and Control (C2) server. This gives the attacker a root level reverse shell on the pager. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed by the attacker to crack, and then pass the clear text password back to the pager, allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
 
 <a id="payload-jump"></a>
 ## 🔄 Payload Workflow
-**1)** User is prompted for the target `wpa2-psk` network SSID.
+**1)** The attacker is prompted for the target `wpa2-psk` network SSID.
 
 **2)** The pager then performs a 60 second scan of the wireless airspace to find the target network.
 
 **3)** If found, the pager channel locks to the target network access point (AP) to optomize the radio for handshake capture.
 
-**4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If handshake is not present, the pager deauths and re-checks. The attack loops until a handshake is found.
+**4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If handshake is not present the attack loops until a handshake is captured.
 
 **5)** Once a handshake has been captured the radio channel lock is lifted returning the radio to its default scanning environment.
 
-**6).** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly). This is done for two reasons:
+**6).** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly via the web UI at `http://172.16.52.1:1471/`). This is done for two reasons:
 
   - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
       
-  - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to enter the cracked password to be used to get on the target network.
+  - When the attacker has successfully cracked the PCAP the portal prompts the attacker to enter the cracked password to be used by the pager to get onto the target network.
 
 <img width="400" height="282" alt="pager" src="https://github.com/user-attachments/assets/acdf5ed8-40e4-43f6-9169-9c78b5f07bf3" />
   
@@ -70,7 +70,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
   
 <img width="772" height="50" alt="hook2" src="https://github.com/user-attachments/assets/fefd4c95-fccf-45d4-be3c-0011599dd34a" />
 
-**14)** A pager reverse shell is then available inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
+**14)** A root level pager reverse shell is then available inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
   
 **The attacker now has full remote access to the pager allowing further exploitation of the target network.**
 
