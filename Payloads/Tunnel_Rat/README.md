@@ -38,7 +38,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 **9.** Once connected to the target network the pager sends a `ping` to `discord.com` to check for internet availability.
 
-**10.** If `ping` is successful the pager will grab the public IP address of the network and send it to an attacker defined `Discord Webhook`. This allows the attacker to be notified when the pager is online and also provides the IP address of the target network.
+**10.** If `ping` is successful the pager will grab the public IP address of the network and send it to an attacker defined `Discord webhook`. This allows the attacker to be notified when the pager is online and also provides the IP address of the target network.
   
 <img width="685" height="70" alt="hook1" src="https://github.com/user-attachments/assets/4af6455b-5f81-4b29-a0f5-07eb0d67df2d" />
 
@@ -46,10 +46,17 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 **12.** If online, the pager attempts to establish a reverse SSH tunnel to the VPS C2 server.
 
-**13.** If successful, the pager notifies the attacker via aforementioned `Discord Webhook` that the tunnel is online.
+**13.** If successful, the pager notifies the attacker via aforementioned `Discord webhook` that the tunnel is online.
   
 <img width="772" height="50" alt="hook2" src="https://github.com/user-attachments/assets/fefd4c95-fccf-45d4-be3c-0011599dd34a" />
   
 **The attacker now has full remote access to the pager via a reverse shell SSH tunnel, allowing further exploitation of the target network.**
 
 <img width="450" height="465" alt="kali" src="https://github.com/user-attachments/assets/00a2e1da-fb47-471e-b4e3-04e447bb9a93" />
+
+## Dependencies
+#### 1. Virtual Private Server (VPS) Command and Control (C2)
+A VPS is required to be used as the attacker C2. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as an exmaple of an attacker platform.
+
+#### 2. Discord webhook
+A [Discord webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) is used to send notifications of payload status updates to the attacker.
