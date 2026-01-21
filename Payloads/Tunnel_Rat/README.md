@@ -22,7 +22,7 @@
 
 Built on Pineapple Pager firmware `v1.0.6`
 
-### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies](#dependencies-jump) | [Configuration](#configuration-jump)
+### [What is Tunnel Rat?](#what-is-tunnel-jump) | [Payload Workflow](#payload-jump) | [Dependencies and Configuration](#dependencies-jump)
 
 </div>
 
@@ -75,7 +75,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 <img width="450" height="465" alt="kali" src="https://github.com/user-attachments/assets/00a2e1da-fb47-471e-b4e3-04e447bb9a93" />
 
 <a id="dependencies-jump"></a>
-## 🛠️ Dependencies
+## 🛠️ Dependencies and Configuration
 ### Virtual Private Server (VPS) Command and Control (C2)
   
   - A VPS is required to host as the attacker C2 platform. During payload development a [Linode Kali Linux VPS](https://www.linode.com/docs/marketplace-docs/guides/kali-linux/) was used as the C2 platform.
