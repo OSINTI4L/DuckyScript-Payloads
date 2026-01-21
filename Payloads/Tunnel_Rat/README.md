@@ -11,7 +11,7 @@ Built on Pineapple Pager firmware `v1.0.6`
 </div>
 
 ## 🐁 What is Tunnel Rat?
-Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via SSH reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the Pager on the target network. The idea behind development of the payload is to allow a Pager to be implanted in a target environment and left to be accessed remotely.
+Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via SSH reverse tunneling to a virtual private server (VPS) being used as a Command and Control (C2) server. The payload assumes that the target network credentials are *not* known and manages techniques to allow network handshake packet capture (PCAP) files to be grabbed for the attacker to crack; allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
 
 ## 🔄 Payload Workflow
 **1.** User is prompted for the target `wpa2-psk` network SSID.
@@ -24,13 +24,13 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
 
 **5.** Once a handshake has been captured the radio channel lock is lifted returning the radio to its default scanning environment.
 
-**6.** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly). This is done for two reasons.
+**6.** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly). This is done for two reasons:
       - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
       - When the attacker has successfully cracked the PCAP, the portal prompts the attacker to entire the cracked password to be used to get on the target network.
 
 <img width="400" height="282" alt="pager" src="https://github.com/user-attachments/assets/acdf5ed8-40e4-43f6-9169-9c78b5f07bf3" />
   
-**This means once the pager is implanted the attacker never requires physical access to the pager to interact with it.**
+**This means once the pager is implanted the attacker never requires physical access to the pager to interact with it, it is accessed covertly via the management AP.**
 
 **7.** Once the attacker has entered the target network password the management portal is shutdown to obfuscate its presence.
 
