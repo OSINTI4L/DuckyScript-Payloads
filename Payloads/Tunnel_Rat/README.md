@@ -97,7 +97,7 @@ Tunnel Rat is a [Hak5 Pineapple Pager](https://shop.hak5.org/products/pager) pay
              `Line 10: DISCORD_WEBHOOK="https://discord.com/api/webhooks/Enter/Discord/Webhook/Here"` 
 
 ### `sshpass`
-  - Due to streamlining the `SSH` connection (as it's ran in the background on the pager) a password is used for `SSH` authentication to the VPS C2. `sshpass` must be installed on the pager via:
+  - To simplify/streamline the `SSH` connection (as it's ran in the background on the pager) a password is used for `SSH` authentication to the VPS C2 instead of a keypair. Because of this, `sshpass` must be installed on the pager via:
       `opkg update && opkg install -d mmc sshpass`
 
 ### Management AP
