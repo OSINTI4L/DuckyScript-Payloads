@@ -39,7 +39,7 @@ Tunnel Rat is a [Hak5 WiFi Pineapple Pager](https://shop.hak5.org/products/pager
 **3)** If found, the pager channel locks to the target network access point (AP) to optomize the radio for handshake capture.
 
 **4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If a handshake is not present the attack loops until a handshake is captured.
-> Note: The payload only checks to see if .22000 ("Hashcat format") handshakes have been captured.
+> Note: The payload only checks to see if .22000 ("Hashcat format") handshakes have been captured. However, all additional file formats are still saved.
 
 **5)** Once a handshake has been captured the radio channel lock is lifted returning the radio to its default scanning environment.
 
