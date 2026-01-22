@@ -69,7 +69,7 @@ ranslater
 
 **12)** The pager then attempts to establish a reverse `SSH` tunnel to the VPS C2 server.
 
-**13)** If the tunnel establishes successfully the pager notifies the attacker via the Discord webhook that the tunnel is online.
+**13)** If the tunnel successfully establishes the pager notifies the attacker via the Discord webhook that the tunnel is online.
   
 <img width="918" height="48" alt="hook3" src="https://github.com/user-attachments/assets/2cae2b8b-37fc-488a-81b0-ed7d6c0dfe08" />
 
