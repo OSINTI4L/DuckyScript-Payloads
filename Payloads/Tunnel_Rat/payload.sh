@@ -85,7 +85,7 @@ TARGETPASS="$(TEXT_PICKER 'PCAP AVAILABLE' 'Enter target password')"
     sleep 1.5
 
 # Shutdown MGMT AP:
-spinner2=$(START_SPINNER "Shutting down $MAPSSID..")
+spinner2=$(START_SPINNER "Shutting down $MAPSSID")
     WIFI_MGMT_AP_DISABLE wlan0mgmt
     APISDOWN="false"
     for i in {1..12}; do
