@@ -16,8 +16,8 @@ TARGETSSID="$(TEXT_PICKER 'Enter target network SSID' '')"
     LOG blue "Target network: $TARGETSSID"
     sleep 1.5
 
-# Scanning for target network:
-spinner1=$(START_SPINNER "Scanning for $TARGETSSID")
+# Idle for 1 min to scan wireless airspace:
+spinner1=$(START_SPINNER "Scanning wireless airspace")
     sleep 60
     TARGETMAC=$(_pineap RECON ISEARCH "$TARGETSSID" | awk '{print $1}' | head -n 1)
 STOP_SPINNER "${spinner1}"
