@@ -28,23 +28,24 @@ Built on WiFi Pineapple Pager firmware `v1.0.6`
 
 <a id="what-is-tunnel-jump"></a>
 ## 🐁 What is Tunnel Rat?
-Tunnel Rat is a [Hak5 WiFi Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via reverse `SSH` tunneling from the pager to a virtual private server (VPS) being used as a Command and Control (C2) server. This gives the attacker a root shell on the pager. The payload assumes that the target network credentials are *not* known and uses methods to allow network handshake packet capture (PCAP) files to be grabbed by the attacker to crack and then pass the clear text password back to the pager, allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
+Tunnel Rat is a [Hak5 WiFi Pineapple Pager](https://shop.hak5.org/products/pager) payload designed to allow an attacker remote access to a target `wpa2-psk` network via reverse `SSH` tunneling from the pager to a virtual private server (VPS) being used as a Command and Control (C2) server. This gives the attacker a root shell on the pager. The payload assumes that the target network credentials are *not* known and uses methods to allow target network handshake packet capture (PCAP) files to be grabbed by the attacker to crack and then pass the clear text password back to the pager, allowing the pager on the target network. The idea behind development of the payload is to allow a pager to be implanted in a target environment and left to be accessed remotely for network exploitation.
 
 <a id="payload-jump"></a>
 ## 🔄 Payload Workflow
 **1)** The attacker is prompted for the target `wpa2-psk` network SSID.
 
-**2)** The pager then performs a 60 second scan of the wireless airspace to find the target network.
+**2)** The pager then performs a 60 second scan of the wireless airspace in an attempt to find the target network.
 
 **3)** If found, the pager channel locks to the target network access point (AP) to optomize the radio for handshake capture.
 
-**4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If handshake is not present the attack loops until a handshake is captured.
-
+**4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If a handshake is not present the attack loops until a handshake is captured.
+> Note: The payload only checks to see if .22000 ("Hashcat format") handshakes have been captured.
+ranslater
 **5)** Once a handshake has been captured the radio channel lock is lifted returning the radio to its default scanning environment.
 
 **6).** When the pager captures a handshake it spawns the "management access point" (the AP used to connect to the pager wirelessly via the web UI at `http://172.16.52.1:1471/`). This is done for two reasons:
 
-  - To allow the attacker to retrieve the target network PCAP file (which has been re-named to be easily identifiable) so that they may crack it.
+  - To allow the attacker to retrieve the target network PCAP file (which have been re-named to be easily identifiable) so that they may crack it.
       
   - When the attacker has successfully cracked the PCAP the portal prompts the attacker to enter the cracked password to be used by the pager to get onto the target network.
 
@@ -59,16 +60,18 @@ Tunnel Rat is a [Hak5 WiFi Pineapple Pager](https://shop.hak5.org/products/pager
 **9)** Once connected to the target network the pager sends a `ping` to discord.com to check for internet availability.
 
 **10)** If `ping` is successful the pager will grab the public IP address of the network and send it to an attacker defined Discord webhook. This allows the attacker to be notified when the pager is online and also provides the IP address of the target network.
+
+<img width="772" height="49" alt="hook1" src="https://github.com/user-attachments/assets/1deec382-3711-4aea-ab99-97aaeacf0170" />
+
+**11)** The pager then sends a `ping` request to the VPS C2 server to ensure it's online. If online, an additional status update is sent to the Discord webhook.
+
+<img width="595" height="49" alt="hook2" src="https://github.com/user-attachments/assets/d8faca0a-c7b9-4f54-b961-d5352d51d29e" />
+
+**12)** The pager then attempts to establish a reverse `SSH` tunnel to the VPS C2 server.
+
+**13)** If the tunnel establishes successfully the pager notifies the attacker via the Discord webhook that the tunnel is online.
   
-<img width="685" height="70" alt="hook1" src="https://github.com/user-attachments/assets/4af6455b-5f81-4b29-a0f5-07eb0d67df2d" />
-
-**11)** The pager then sends a `ping` request to the VPS C2 server to ensure it's online.
-
-**12)** If online the pager attempts to establish a reverse `SSH` tunnel to the VPS C2 server.
-
-**13)** If the tunnel establishes successfully the pager notifies the attacker via the aforementioned Discord webhook that the tunnel is online.
-  
-<img width="772" height="50" alt="hook2" src="https://github.com/user-attachments/assets/fefd4c95-fccf-45d4-be3c-0011599dd34a" />
+<img width="772" height="49" alt="hook1" src="https://github.com/user-attachments/assets/d9577314-0423-4803-9477-d2d30e784496" />
 
 **14)** A pager root shell is then available inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
   
