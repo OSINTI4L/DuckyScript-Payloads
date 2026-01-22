@@ -71,7 +71,7 @@ ranslater
 
 **13)** If the tunnel establishes successfully the pager notifies the attacker via the Discord webhook that the tunnel is online.
   
-<img width="772" height="49" alt="hook1" src="https://github.com/user-attachments/assets/d9577314-0423-4803-9477-d2d30e784496" />
+<img width="918" height="48" alt="hook3" src="https://github.com/user-attachments/assets/2cae2b8b-37fc-488a-81b0-ed7d6c0dfe08" />
 
 **14)** A pager root shell is then available inside of the VPS C2 at: `ssh -p 2222 root@127.0.0.1`
   
