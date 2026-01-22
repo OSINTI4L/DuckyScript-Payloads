@@ -40,7 +40,7 @@ else
     exit 0
 fi
 
-# Check for PCAP, If PCAP configure filename/spawn MGMT AP, else deauth/sleep 1 minute and check again, loop until PCAP:
+# Check for .22000 handshake, if handshake configure filename/spawn MGMT AP, else deauth/sleep 1 minute and check again, loop until handshake:
 CLEANMAC=$(echo "$TARGETMAC" | tr -d ':')
 PCAP=$(find /root/loot/handshakes -name "*$CLEANMAC*_handshake.22000" | head -n 1)
 DEAUTHTARG() {
@@ -63,7 +63,7 @@ else
         sleep 1.5
 fi
 
-# Strip path from .pcap:
+# Strip path from .22000 handshake:
 CLEANCAP=$(basename "$PCAP")
 
 # Simplify file.extension:
@@ -76,7 +76,7 @@ sleep 10
 LOG green "Channel hopping resumed."
 sleep 1.5
 
-# Spawn MGMT AP for PCAP retrieval:
+# Spawn MGMT AP for handshake retrieval:
 WIFI_MGMT_AP wlan0mgmt "$MAPSSID" psk2 "$MAPPASS"
 
 # Prompt for target network password:
