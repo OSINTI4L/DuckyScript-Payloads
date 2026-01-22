@@ -17,14 +17,14 @@ TARGETSSID="$(TEXT_PICKER 'Enter target network SSID' '')"
     sleep 1.5
 
 # Scanning for target network:
-spinner1=$(START_SPINNER "Scanning for target..")
+spinner1=$(START_SPINNER "Scanning for $TARGETSSID..")
     sleep 60
     TARGETMAC=$(_pineap RECON ISEARCH "$TARGETSSID" | awk '{print $1}' | head -n 1)
 STOP_SPINNER "${spinner1}"
 
 # If network lock/log channel to target MAC, else exit:
 if [ -n "$TARGETMAC" ]; then
-    LOG green "Target network $TARGETSSID found!"
+    LOG green "Target network: $TARGETSSID found!"
     sleep 1.5
     LOG blue "Optomizing for handshake capture.."
     sleep 1.5
@@ -35,7 +35,7 @@ if [ -n "$TARGETMAC" ]; then
     LOG blue "Waiting for handshake capture.."
     sleep 1.5
 else
-    ALERT "Target $TARGETSSID not found!"
+    ALERT "Target network: $TARGETSSID not found!"
     LOG red "Exiting."
     exit 0
 fi
