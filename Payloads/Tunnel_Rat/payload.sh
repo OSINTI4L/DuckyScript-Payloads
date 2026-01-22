@@ -235,4 +235,4 @@ if [ "$TUNCHK" != "true" ]; then
 fi
 
 sleep 1.5
-LOG green "Reverse SSH tunnel established!"
+LOG green "Reverse SSH tunnel established! Access WiFi Pineapple Pager root shell at VPS C2: $VPSIP via: ssh -p 2222 root@127.0.0.1"
