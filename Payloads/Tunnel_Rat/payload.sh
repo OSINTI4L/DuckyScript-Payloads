@@ -143,7 +143,7 @@ for i in {1..12}; do
     if INETCHECK; then
 	    LOG green "Internet connection available!"
         sleep 1.5
-        LOG blue "Sending $TARGETSSID WAN IP to Discord webhook.."
+        LOG blue "Sending $TARGETSSID public IP to Discord webhook.."
         PIP=$(curl -s https://api.ipify.org)
         curl -H "Content-Type: application/json" \
         -X POST \
