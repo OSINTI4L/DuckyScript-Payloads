@@ -34,9 +34,9 @@ Tunnel Rat is a [Hak5 WiFi Pineapple Pager](https://shop.hak5.org/products/pager
 ## 🔄 Payload Workflow
 **1)** The attacker is prompted for the target `wpa2-psk` network SSID.
 
-**2)** The pager then performs a 60 second scan of the wireless airspace in an attempt to find the target network.
+**2)** The payload then idles for a 60 second period allowing Recon to scan the wireless airspace for access points.
 
-**3)** If found, the pager channel locks to the target network access point (AP) to optomize the radio for handshake capture.
+**3)** If the target network is found the pager channel locks to the target network access point (AP) to optomize the radio for handshake capture.
 
 **4)** The pager then checks to see if a handshake has already been captured, else performs a deauthentication attack against the target network, waits 60 sconds, and re-checks. If a handshake is not present the attack loops until a handshake is captured.
 > Note: The payload only checks to see if .22000 ("Hashcat format") handshakes have been captured.
