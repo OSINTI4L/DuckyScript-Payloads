@@ -16,7 +16,7 @@ A collection of DuckyScript payloads for hacking the planet.
 
 |Name|Device|Targeted Operating System|Type|Description|
 |-----|-----|-----|-----|-----|
-|[Tunnel_Rat](https://github.com/OSINTI4L/DuckyScript-Payloads/blob/main/Payloads/Tunnel_Rat/README.md)|WiFi Pineapple Pager|`Network`|Remote Access|Tunnel Rat is a remote access payload that allows an attacker the ability to remotely exploit a target network by gaining a root shell via reverse SSH tunnel on an implanted WiFi Pineapple Pager through a VPS Command and Control server.
+|[Tunnel_Rat](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Tunnel_Rat)|WiFi Pineapple Pager|`Network`|Remote Access|Tunnel Rat is a remote access payload that allows an attacker the ability to remotely exploit a target network by gaining a root shell via reverse SSH tunnel on an implanted WiFi Pineapple Pager through a VPS Command and Control server.
 |[Paper_Pusher](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Paper_Pusher)|WiFi Pineapple Pager|`Network`|Prank|Paper-Pusher uses Nmap to scan the LAN subnet to find paper printers with port 9100 open and sends spam to be printed via RAW printing with Netcat.
 |[Droidex](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/Droidex)|USB Rubber Ducky/O.MG|`Android`|Data Exfiltration|Droidex exfiltrates the top file stored in the Downloads directory of target mobile device to a self-hosted python webserver over LAN.
 |[PlunderPIN](https://github.com/OSINTI4L/DuckyScript-Payloads/tree/main/Payloads/PlunderPIN)|USB Rubber Ducky/O.MG|`Android`|Phishing|PlunderPIN utilizes a malicious homepage placed in the Google Chrome browser to phish the target user for their device PIN code.
