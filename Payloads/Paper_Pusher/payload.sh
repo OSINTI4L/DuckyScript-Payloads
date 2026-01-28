@@ -54,7 +54,7 @@ LOG green "Printer found at: $PRNTR with port 9100 exposed!"
 sleep 1.5
 
 # Text and number of pages to be printed:
-PRNTTXT="$(TEXT_PICKER 'Enter text to be printed' 'Leave blank to spam paper')"
+PRNTTXT="$(TEXT_PICKER 'Enter text to be printed' 'Leave empty to spam paper')"
 PRNTPGS="$(TEXT_PICKER 'Number of pages to print?' '')"
 if [ -z "$PRNTPGS" ]; then
     ALERT "Number of pages to print cannot be empty!"
