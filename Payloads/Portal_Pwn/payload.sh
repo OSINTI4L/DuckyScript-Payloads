@@ -69,7 +69,7 @@ fi
 LOG green "$EPSSID IP address: $EPIP"
 sleep 1.5
 
-# Select attack mode:
+# Select attack mode and send payload:
 AMODE="$(TEXT_PICKER 'Choose attack mode' 'Spam: 1 Crash: 2')"
     LOG blue "Attack mode: $AMODE selected."
     sleep 1.5
