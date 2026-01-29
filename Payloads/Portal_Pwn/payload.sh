@@ -1,5 +1,5 @@
 #!/bin/bash
-# Payload for crashing/spamming ESP32 Marauder evil portals.
+# Payload for crashing/spamming ESP32 Marauder evil portals with a Hak5 WiFi Pineapple Pager.
 
 # Disconnect wlan0cli if connected:
 LOG blue "Checking if wlan0cli is currently connected.."
