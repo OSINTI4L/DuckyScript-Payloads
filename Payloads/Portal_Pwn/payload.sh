@@ -104,7 +104,7 @@ elif [ "$AMODE" -eq "2" ]; then
     PAYLOAD=$(head -c 3000 /dev/urandom | base64 | tr -d '+/=' | tr -d '\n')
     LOG blue "Sending payload.."
     sleep 1.5
-    for i in {1..50}; do
+    for i in {1..40}; do
         curl -s -o /dev/null "http://${EPIP}/get?email=${PAYLOAD}&password=${PAYLOAD}" &
     done
     LOG green "Payload sent!"
